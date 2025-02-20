@@ -1,0 +1,117 @@
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
+import { PublicRoute } from "./PublicRoutes";
+import Layout from "../components/layout/index";
+import LoginPage from "../pages/auth/login/Index";
+import Home from "../pages/home";
+import OtpScreen from "../pages/auth/otp/OtpScreen";
+import EnrichData from "../pages/EnrichData";
+import File from "../pages/File";
+import Request from "../pages/request";
+import Projects from "../pages/Projects";
+import TrafficTable from "../pages/Projects/TrafficTable";
+import ProjectsLayout from "../pages/Projects/ProjectsLayout";
+
+const Routers = () => {
+  return (
+    <>
+      <HashRouter>
+        <Routes>
+          {/* Admin Panel Routes */}
+          <Route
+            path="/"
+            element={
+              <PublicRoute>
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
+          
+
+<Route
+            path="/otp"
+            element={
+              <PublicRoute>
+                <OtpScreen />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/home"
+            element={
+              <Layout>
+              <Home/>
+              </Layout>
+            }
+          />
+          
+           <Route
+            path="/projects"
+            element={
+              <Layout>
+              <Projects/>
+              </Layout>
+            }
+          />
+          {/* <Route
+            path="/projects/traffic/:key"
+            element={
+              <Layout>
+              <TrafficTable/>
+              </Layout>
+            }
+          /> */}
+
+          <Route
+            path="/project/traffic/:key"
+            element={
+              <Layout>
+              <ProjectsLayout>
+              <TrafficTable />
+                </ProjectsLayout>
+              </Layout>
+            }
+          />
+          <Route
+            path="/project/requests/:key"
+            element={
+              <Layout>
+              <ProjectsLayout>
+              <Request/>
+              </ProjectsLayout>
+              </Layout>
+            }
+          />
+        {/* <Route
+            path="/projects/requests/:key"
+            element={
+              <Layout>
+              <Request/>
+              </Layout>
+            }
+          /> */}
+          <Route
+            path="/fileupload"
+            element={
+              <Layout>
+              <File/>
+              </Layout>
+            }
+          />
+          <Route
+            path="/project/requests/:key/enrichdata/:id"
+            element={
+              <Layout>
+              <ProjectsLayout>
+              <EnrichData/>
+              </ProjectsLayout>
+              </Layout>
+             
+            }
+          />
+        </Routes>
+      </HashRouter>
+    </>
+  );
+};
+
+export default Routers;

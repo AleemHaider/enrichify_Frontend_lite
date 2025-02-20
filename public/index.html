@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Enrichify</title>
+  </head>
+  <body>
+    <noscript>Transforming data into valuable assets</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+
+
+    <!-- <script>
+      // Function to get user's geolocation information and log it to the console
+      async function getUserLocation() {
+        try {
+          // Fetch geolocation data from the IP geolocation API (ip-api)
+          const response = await fetch('http://ip-api.com/json/');
+          const data = await response.json();
+    
+          if (response.ok) {
+            // Log the user information directly to the console
+            console.log('User Info:');
+            console.log('IP Address:', data.query);
+            console.log('ZIP Code:', data.zip);
+            console.log('State:', data.regionName);
+            console.log('Country:', data.country);
+            console.log('City:', data.city);
+            console.log('Latitude:', data.lat);
+            console.log('Longitude:', data.lon);
+          } else {
+            console.error('Failed to fetch user location:', data.message);
+          }
+        } catch (error) {
+          console.error('Error fetching geolocation data:', error);
+        }
+      }
+      function logCurrentURL() {
+    console.log('Current Site URL:', window.location.href);
+  }
+    
+      // Automatically call the function on page load
+      window.onload = function() {
+    getUserLocation();
+    logCurrentURL();  // Log the URL to the console
+  };
+    </script>
+     -->
+
+
+
+     <!-- <script>
+      // Function to get user's geolocation information and log it to the console
+      async function getUserLocation() {
+        try {
+          // Fetch the user's IP address using ip-api (or any similar API)
+          const response = await fetch('http://ip-api.com/json/');
+          const data = await response.json();
+      
+          if (response.ok) {
+            // Prepare the data object
+            const userData = {
+              ip_address: data.query,          // User's IP address
+              user_agent: navigator.userAgent, // User's browser user-agent
+              page_url: window.location.href,  // Current page URL
+              visit_time: new Date().toLocaleTimeString(), // Current time when the page is loaded
+              domain_url: window.location.hostname, // Domain of the current page
+              state: data.regionName,          // Full state name from the geolocation data
+              zip_code: data.zip               // ZIP code of the user
+            };
+    
+            // Log the data to the console
+            console.log('User Data:', userData);
+          } else {
+            console.error('Failed to fetch user location:', data.message);
+          }
+        } catch (error) {
+          console.error('Error fetching geolocation data:', error);
+        }
+      }
+    
+      // Automatically call the function on page load
+      window.onload = function() {
+        getUserLocation();
+      };
+    </script> -->
+    
+
+
+    <!-- <script>
+      // Function to get user's geolocation information and log it to the console
+      async function getUserLocation() {
+        try {
+          // Fetch the user's IP address using ip-api (or any similar API)
+          const response = await fetch('http://ip-api.com/json/');
+          const data = await response.json();
+      
+          if (response.ok) {
+            // Prepare the data object
+            const userData = {
+              secret_key:"9aa13e24751f635f7901bcf3e857e2e3",
+              ip_address: data.query,          // User's IP address
+              user_agent: navigator.userAgent, // User's browser user-agent
+              page_url: window.location.href,  // Current page URL
+              visit_time: new Date().toLocaleTimeString(), // Current time when the page is loaded
+              domain_url: window.location.hostname, // Domain of the current page
+              state: data.regionName,          // Full state name from the geolocation data
+              zip_code: data.zip               // ZIP code of the user
+            };
+    
+            // Send the data to your API using a POST request
+            const apiUrl = 'http://3.81.40.84/GoogelAnalytics/Visitor/save_visitor_data';
+            const apiResponse = await fetch(apiUrl, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(userData),
+            });
+    
+            if (apiResponse) {
+              console.log('Visitor data successfully sent to the API');
+            } else {
+              console.error('Failed to send visitor data:', apiResponse.statusText);
+            }
+          } else {
+            console.error('Failed to fetch user location:', data.message);
+          }
+        } catch (error) {
+          console.error('Error fetching geolocation data:', error);
+        }
+      }
+    
+      // Automatically call the function on page load
+      window.onload = function() {
+        getUserLocation();
+      };
+    
+    </script> -->
+    
+
+<!-- 
+     <script>
+      let sessionData = {};
+      async function getUserLocation() {
+        try {
+          const response = await fetch('http://ip-api.com/json/');
+          const data = await response.json()
+          if (response.ok) {
+            const visitTime = new Date();
+            const formattedVisitTime = visitTime.toLocaleString('en-US', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+              hour12: true,
+            });
+            sessionData = {
+              secret_key:"f8ee6fa3b93b416bc790f4a2674cf9ed",
+              ip_address: data.query,          // User's IP address
+              user_agent: navigator.userAgent, // User's browser user-agent
+              page_url: window.location.href,  // Current page URL
+              domain_url: window.location.hostname, // Domain of the current page
+              state: data.regionName,          // Full state name
+              zip_code: data.zip,              // ZIP code
+              visit_time: formattedVisitTime,  // Formatted session start time
+            };
+            console.log("Session data initialized:", sessionData);
+          } else {
+            console.error('Failed to fetch user location:', data.message);
+          }
+        } catch (error) {
+          console.error('Error fetching geolocation data:', error);
+        }
+      }
+      async function sendSessionData() {
+        if (!sessionData.visit_time) {
+          console.error("Session data is not ready to be sent.");
+          return;
+        }
+        const sessionEndTime = new Date();
+        const sessionDurationSeconds = (sessionEndTime - new Date(sessionData.visit_time)) / 1000; // Duration in seconds
+        const minutes = Math.floor(sessionDurationSeconds / 60);
+        const seconds = Math.floor(sessionDurationSeconds % 60);
+        const formattedSessionTime = minutes+"m "+ seconds +"s";
+        sessionData.session_time = formattedSessionTime;
+        try {
+          const apiUrl = 'http://3.81.40.84/GoogelAnalytics/Visitor/save_visitor_data';
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(sessionData),
+          });
+          if (response.ok) {
+            console.log('Session data successfully sent to the API');
+          } else {
+            console.error('Failed to send session data:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Error sending session data:', error);
+        }
+      }
+      window.onload = function () {
+        getUserLocation();
+      };
+      window.onunload = function () {
+        sendSessionData();
+      };
+    </script> -->
+    
+    
+
+
+
+    <!-- <script>
+      let sessionData = {};
+      async function getUserLocation() {
+        try {
+          const response = await fetch('http://ip-api.com/json/');
+          const data = await response.json();
+          if (response.ok) {
+            const visitTime = new Date();
+            const formattedVisitTime = visitTime.toLocaleString('en-US', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+              hour12: true,
+            });
+            sessionData = {
+              // f8ee6fa3b93b416bc790f4a2674cf9ed
+              secret_key: "93e5f1c88f3c0475ba4fa6e190532f1a",
+              ip_address: data.query,
+              user_agent: navigator.userAgent,
+              page_url: window.location.href,
+              domain_url: window.location.hostname,
+              state: data.regionName,
+              zip_code: data.zip,
+              visit_time: formattedVisitTime,
+              left_time: null, // Initially null
+              session_time: null, // Initially null
+            };
+            console.log("Session data initialized:", sessionData);
+            sendSessionData(); // API call on session start
+          } else {
+            console.error('Failed to fetch user location:', data.message);
+          }
+        } catch (error) {
+          console.error('Error fetching geolocation data:', error);
+        }
+      }
+    
+      async function sendSessionData() {
+        try {
+          const apiUrl = 'https://ewebsftp.com/GoogelAnalytics/Visitor/save_visitor_data';
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(sessionData),
+          });
+          if (response.ok) {
+            console.log('Session data successfully sent to the API:', sessionData);
+          } else {
+            console.error('Failed to send session data:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Error sending session data:', error);
+        }
+      }
+    
+      window.onload = function () {
+        getUserLocation();
+      };
+    
+      window.onunload = async function () {
+        const sessionEndTime = new Date();
+        const formattedLeftTime = sessionEndTime.toLocaleString('en-US', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true,
+        });
+        const sessionDurationSeconds = (sessionEndTime - new Date(sessionData.visit_time)) / 1000; // Duration in seconds
+        const minutes = Math.floor(sessionDurationSeconds / 60);
+        const seconds = Math.floor(sessionDurationSeconds % 60);
+        const formattedSessionTime = `${minutes}m ${seconds}s`;
+    
+        sessionData.left_time = formattedLeftTime; // Update left_time
+        sessionData.session_time = formattedSessionTime; // Update session_time
+    
+        await sendSessionData(); // API call on session end
+      };
+    </script> -->
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <script>
+      let sessionData = {};
+
+async function getUserLocation() {
+  try {
+    const response = await fetch('https://api.ipify.org/?format=json');
+    const data = await response.json();
+    if (response.ok) {
+      const visitTime = new Date();
+      const formattedVisitTime = visitTime.toLocaleString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+      });
+
+      sessionData = {
+        secret_key: "543d20f0a634ab5ff418bfdc1fcf18ce",
+        ip_address: data.query,
+        user_agent: navigator.userAgent,
+        page_url: window.location.href,
+        domain_url: window.location.hostname,
+        state: data.regionName,
+        zip_code: data.zip,
+        visit_time: formattedVisitTime,
+        left_time: null, // Initially null
+        session_time: null, // Initially null
+      };
+
+      console.log("Session data initialized:", sessionData);
+      sendSessionData(); // Send session data when user visits
+    } else {
+      console.error('Failed to fetch user location:', data.message);
+    }
+  } catch (error) {
+    console.error('Error fetching geolocation data:', error);
+  }
+}
+
+async function sendSessionData() {
+  try {
+    const apiUrl = 'https://ewebsftp.com/GoogelAnalytics/Visitor/save_visitor_data';
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(sessionData),
+    });
+
+    if (response.ok) {
+      console.log('Session data successfully sent to the API:', sessionData);
+    } else {
+      console.error('Failed to send session data:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error sending session data:', error);
+  }
+}
+
+window.onload = function () {
+  getUserLocation();
+};
+
+window.addEventListener('beforeunload', async function (event) {
+  const sessionEndTime = new Date();
+  const formattedLeftTime = sessionEndTime.toLocaleString('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true,
+  });
+
+  const sessionDurationSeconds = (sessionEndTime - new Date(sessionData.visit_time)) / 1000; // Duration in seconds
+  const minutes = Math.floor(sessionDurationSeconds / 60);
+  const seconds = Math.floor(sessionDurationSeconds % 60);
+  const formattedSessionTime = `${minutes}m ${seconds}s`;
+
+  sessionData.left_time = formattedLeftTime; // Update left_time
+  sessionData.session_time = formattedSessionTime; // Update session_time
+
+  // Send session data on page unload
+  try {
+    await sendSessionData(); // API call when session ends
+  } catch (error) {
+    console.error('Error sending session data on unload:', error);
+  }
+
+  // Note: In modern browsers, `beforeunload` prevents a page from finishing loading until the API call finishes.
+  // If you don't want that behavior, consider moving to a more asynchronous server-side solution.
+});
+
+    </script> -->
+
+    
+
+
+
+<!-- with ip-api sending all data to backend -->
+<!-- 
+    <script>
+      let sessionData = {};
+    
+    async function getUserLocation() {
+      try {
+        // First API call to get IP address from ipify
+        const response = await fetch('https://api.ipify.org/?format=json');
+
+        const data = await response.json();
+        console.log("api is",data.ip);
+        if (response.ok) {
+          const visitTime = new Date();
+          const formattedVisitTime = visitTime.toLocaleString('en-US', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true,
+          });
+    
+          // Initialize session data with IP from ipify
+          sessionData = {
+            secret_key: "543d20f0a634ab5ff418bfdc1fcf18ce",
+            ip_address: data.ip,
+            user_agent: navigator.userAgent,
+            page_url: window.location.href,
+            domain_url: window.location.hostname,
+            state: null,  
+            zip_code: null, 
+            visit_time: formattedVisitTime,
+            left_time: null, // Initially null
+            session_time: null, // Initially null
+          };
+    
+          console.log("Session data initialized:", sessionData);
+    
+          // Now, make the second API call to ip-api.com to get more location details
+          await getLocationDetails(data.ip);  // Pass the IP to get details
+    
+        } else {
+          console.error('Failed to fetch user location:', data.message);
+        }
+      } catch (error) {
+        console.error('Error fetching geolocation data:', error);
+      }
+    }
+    
+    async function getLocationDetails(ip) {
+      console.log(ip+"in api function ")
+      try {
+        // API call to ip-api.com for location details
+        const response = await fetch(`https://ip-api.com/${ip}`);
+        const locationData = await response.json();
+    
+        if (locationData.status === 'fail') {
+          console.error('Failed to fetch location details:', locationData.message);
+        } else {
+          // Append the location data to the sessionData object
+          sessionData.state = locationData.regionName || sessionData.state;
+          sessionData.zip_code = locationData.zip || sessionData.zip_code;
+          sessionData.city = locationData.city || null;
+          sessionData.country = locationData.country || null;
+          sessionData.lat = locationData.lat || null;
+          sessionData.lon = locationData.lon || null;
+    
+          console.log("Location details added to session data:", sessionData);
+    
+          // Send session data now after location info is appended
+          sendSessionData();
+        }
+    
+      } catch (error) {
+        console.error('Error fetching location details from ip-api:', error);
+      }
+    }
+    
+    async function sendSessionData() {
+      try {
+        const apiUrl = 'https://ewebsftp.com/GoogelAnalytics/Visitor/save_visitor_data';
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(sessionData),
+        });
+    
+        if (response.ok) {
+          console.log('Session data successfully sent to the API:', sessionData);
+        } else {
+          console.error('Failed to send session data:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error sending session data:', error);
+      }
+    }
+    
+    window.onload = function () {
+      getUserLocation();
+    };
+    
+    window.addEventListener('beforeunload', async function (event) {
+      const sessionEndTime = new Date();
+      const formattedLeftTime = sessionEndTime.toLocaleString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+      });
+    
+      const sessionDurationSeconds = (sessionEndTime - new Date(sessionData.visit_time)) / 1000; // Duration in seconds
+      const minutes = Math.floor(sessionDurationSeconds / 60);
+      const seconds = Math.floor(sessionDurationSeconds % 60);
+      const formattedSessionTime = `${minutes}m ${seconds}s`;
+    
+      sessionData.left_time = formattedLeftTime; // Update left_time
+      sessionData.session_time = formattedSessionTime; // Update session_time
+    
+      // Send session data on page unload
+      try {
+        await sendSessionData(); // API call when session ends
+      } catch (error) {
+        console.error('Error sending session data on unload:', error);
+      }
+    });
+    </script> -->
+  
+    
+
+    <!-- api sending ip and session details to backend -->
+<!-- 
+    <script>
+      let sessionData = {};
+    
+      async function getUserLocation() {
+        try {
+          // First API call to get IP address from ipify
+          const response = await fetch('https://api.ipify.org/?format=json');
+          const data = await response.json();
+          console.log("api is", data.ip);
+    
+          if (response.ok) {
+            const visitTime = new Date();
+            const formattedVisitTime = visitTime.toLocaleString('en-US', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+              hour12: true,
+            });
+    
+            // Initialize session data with IP from ipify
+            sessionData = {
+              secret_key: "08754daaa22e91bacab01f8fd37726a9",
+              ip_address: data.ip,
+              user_agent: navigator.userAgent,
+              page_url: window.location.href,
+              domain_url: window.location.hostname,
+              // state: null,  
+              // zip_code: null, 
+              visit_time: formattedVisitTime,
+              left_time: null, // Initially null
+              session_time: null, // Initially null
+            };
+    
+            console.log("Session data initialized:", sessionData);
+    
+            // Send session data directly to your database API
+            await sendSessionData();
+          } else {
+            console.error('Failed to fetch user location:', data.message);
+          }
+        } catch (error) {
+          console.error('Error fetching geolocation data:', error);
+        }
+      }
+    
+      async function sendSessionData() {
+        try {
+          const apiUrl = 'https://ewebsftp.com/GoogelAnalytics/Visitor/save_visitor_data';
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(sessionData),
+          });
+    
+          if (response.ok) {
+            console.log("response",response)
+            console.log('Session data successfully sent to the API:', sessionData);
+          } else {
+            console.error('Failed to send session data:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Error sending session data:', error);
+        }
+      }
+    
+      window.onload = function () {
+        getUserLocation();
+      };
+    
+      window.addEventListener('beforeunload', async function (event) {
+        const sessionEndTime = new Date();
+        const formattedLeftTime = sessionEndTime.toLocaleString('en-US', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true,
+        });
+    
+        const sessionDurationSeconds = (sessionEndTime - new Date(sessionData.visit_time)) / 1000; // Duration in seconds
+        const minutes = Math.floor(sessionDurationSeconds / 60);
+        const seconds = Math.floor(sessionDurationSeconds % 60);
+        const formattedSessionTime = minutes+" m " +seconds+" s";
+    
+        sessionData.left_time = formattedLeftTime; // Update left_time
+        sessionData.session_time = formattedSessionTime; // Update session_time
+    
+        // Send session data on page unload
+        try {
+          await sendSessionData(); // API call when session ends
+        } catch (error) {
+          console.error('Error sending session data on unload:', error);
+        }
+      });
+    </script> -->
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <script>
+      let sessionData = {};
+
+async function getUserLocation() {
+  try {
+    // First API call to get IP address from ipify
+    const response = await fetch('https://api.ipify.org/?format=json');
+    const data = await response.json();
+    console.log("API response:", data.ip);
+
+    if (response.ok) {
+      const visitTime = new Date();
+      const formattedVisitTime = visitTime.toLocaleString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+      });
+      // Initialize session data with IP from ipify
+      sessionData = {
+        secret_key: "38bd54449dd0c2aab1822943b7f6db2d", // This can be a secret key you use to authenticate the request
+        ip_address: data.ip,
+        user_agent: navigator.userAgent,
+        page_url: window.location.href,
+        domain_url: window.location.hostname,
+        visit_time: formattedVisitTime,
+        left_time: null, // Initially null
+        // session_time: null,
+        session_id: generateSessionId(), // Unique session ID to track the session
+      };
+
+      console.log("Session data initialized:", sessionData);
+
+      // Send session data directly to your database API
+      await sendSessionData('start');
+    } else {
+      console.error('Failed to fetch user location:', data.message);
+    }
+  } catch (error) {
+    console.error('Error fetching geolocation data:', error);
+  }
+}
+
+function generateSessionId() {
+  // Generate a simple unique session ID (You can replace this with a more robust approach if needed)
+  return 'session-' + Math.random().toString(36).substr(2, 9);
+}
+
+async function sendSessionData(type) {
+  try {
+    const apiUrl = 'https://ewebsftp.com/GoogelAnalytics/Visitor/save_visitor_data';
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(sessionData),
+    });
+
+    if (response.ok) {
+      const responseData = await response.json(); // Parse the JSON response
+      console.log(`Session ${type} data successfully sent to the API:`, responseData);
+      if(responseData?.data?.visit_time){
+        sessionData.visit_time=responseData?.data?.visit_time
+      }
+      // console.log(`Session ${type} data successfully sent to the API:`, response);
+    } else {
+      console.error(`Failed to send session ${type} data:`, response.statusText);
+    }
+  } catch (error) {
+    console.error(`Error sending session ${type} data:`, error);
+  }
+}
+
+window.onload = function () {
+  getUserLocation();
+};
+
+// Capture page change or reload events (unload or beforeunload)
+window.addEventListener('unload', async function (event) {
+  const sessionEndTime = new Date();
+  const formattedLeftTime = sessionEndTime.toLocaleString('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true,
+  });
+
+  // Calculate session duration in seconds
+  // let entry_time=localStorage.getItem('entry_time')
+  // console.log(entry_time)
+  // const sessionDurationSeconds = (sessionEndTime - new Date(sessionData.visit_time)) / 1000;
+  // const minutes = Math.floor(sessionDurationSeconds / 60);
+  // const seconds = Math.floor(sessionDurationSeconds % 60);
+  // const formattedSessionTime = `${minutes} m ${seconds} s`;
+
+  // Update sessionData with left time and session duration
+  sessionData.left_time = formattedLeftTime;
+  // sessionData.session_time = formattedSessionTime;
+  // Send session data on page unload
+  try {
+    await sendSessionData('end');
+     // API call when session ends
+  } catch (error) {
+    console.error('Error sending session data on unload:', error);
+  }
+});
+
+
+
+
+
+// Optionally handle reloads to avoid sending redundant data
+window.addEventListener('load', function () {
+  const storedSessionId = sessionStorage.getItem('session_id');
+  if (storedSessionId) {
+    sessionData.session_id = storedSessionId;
+  } else {
+    sessionStorage.setItem('session_id', sessionData.session_id);
+  }
+});
+
+    </script> -->
+   
+  
+
+
+
+    <!-- <script>
+      let sessionData = {};
+    
+      async function getUserLocation() {
+        try {
+          // First API call to get IP address from ipify
+          const response = await fetch('https://api.ipify.org/?format=json');
+          const data = await response.json();
+          console.log("API response:", data.ip);
+    
+          if (response.ok) {
+            const visitTime = new Date();
+            const formattedVisitTime = visitTime.toLocaleString('en-US', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+              hour12: true,
+            });
+            // Initialize session data with IP from ipify
+            sessionData = {
+              secret_key: "38bd54449dd0c2aab1822943b7f6db2d", // Your secret key
+              ip_address: data.ip,
+              user_agent: navigator.userAgent,
+              page_url: window.location.href,
+              domain_url: window.location.hostname,
+              visit_time: formattedVisitTime,
+              left_time: null, // Initially null
+              session_id: generateSessionId(), // Unique session ID
+            };
+    
+            console.log("Session data initialized:", sessionData);
+    
+            // Store session ID to sessionStorage to reuse on reloads
+            sessionStorage.setItem('session_id', sessionData.session_id);
+    
+            // Send session data directly to your database API
+            await sendSessionData('start');
+          } else {
+            console.error('Failed to fetch user location:', data.message);
+          }
+        } catch (error) {
+          console.error('Error fetching geolocation data:', error);
+        }
+      }
+    
+      function generateSessionId() {
+        // Generate a simple unique session ID (You can replace this with a more robust approach if needed)
+        return 'session-' + Math.random().toString(36).substr(2, 9);
+      }
+    
+      async function sendSessionData(type) {
+        try {
+          const apiUrl = 'https://ewebsftp.com/GoogelAnalytics/Visitor/save_visitor_data';
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(sessionData),
+          });
+    
+          if (response.ok) {
+            const responseData = await response.json();
+            console.log(`Session ${type} data successfully sent to the API:`, responseData);
+            if (responseData?.data?.visit_time) {
+              sessionData.visit_time = responseData?.data?.visit_time;
+            }
+          } else {
+            console.error(`Failed to send session ${type} data:`, response.statusText);
+          }
+        } catch (error) {
+          console.error(`Error sending session ${type} data:`, error);
+        }
+      }
+    
+      window.onload = function () {
+        getUserLocation();
+    
+        // Capture session ID from sessionStorage if it exists
+        const storedSessionId = sessionStorage.getItem('session_id');
+        if (storedSessionId) {
+          sessionData.session_id = storedSessionId;
+        }
+      };
+    
+      // Handle page unload or beforeunload events
+      window.addEventListener('beforeunload', async function (event) {
+
+        event.preventDefault();
+            
+
+        const sessionEndTime = new Date();
+        const formattedLeftTime = sessionEndTime.toLocaleString('en-US', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true,
+        });
+    
+        // Update session data with left time
+        sessionData.left_time = formattedLeftTime;
+    
+        // Send session data when the page is about to unload
+        try {
+          await sendSessionData('end');
+        } catch (error) {
+          console.error('Error sending session data on unload:', error);
+        }
+        // event.preventDefault();
+        event.returnValue = '';
+      });
+    
+      // To avoid sending redundant data, use sessionStorage to track if a session was already initiated
+      window.addEventListener('load', function () {
+        const storedSessionId = sessionStorage.getItem('session_id');
+        if (storedSessionId) {
+          sessionData.session_id = storedSessionId;
+        } else {
+          sessionStorage.setItem('session_id', sessionData.session_id);
+        }
+      });
+    </script> -->
+    <!-- Define the secret key dynamically -->
+<!-- <script type="text/javascript">
+  window.secretKey = "38bd54449dd0c2aab1822943b7f6db2d";
+</script>
+<script type="text/javascript" src="https://ewebsftp.com/GoogelAnalytics/public/uploads/pexel.js" async></script> -->
+
+  
+  
+
+
+
+
+
+
+
+
+    <!-- <script>
+      let sessionData = {};
+
+async function getUserLocation() {
+  try {
+    // First API call to get IP address from ipify
+    const response = await fetch('https://api.ipify.org/?format=json');
+    const data = await response.json();
+    console.log("API response:", data.ip);
+
+    if (response.ok) {
+      // Get visit time from localStorage or set it if not already set
+      let entry_time = localStorage.getItem('entry_time');
+      if (!entry_time) {
+        const visitTime = new Date();
+        const formattedVisitTime = visitTime.toLocaleString('en-US', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true,
+        });
+        localStorage.setItem('entry_time', formattedVisitTime);  // Set entry time in localStorage
+        entry_time = formattedVisitTime;  // Use the newly set time
+      }
+
+      // Initialize session data with IP from ipify
+      sessionData = {
+        secret_key: "680e76266efae77d45f938ee2ab07c8e", // This can be a secret key you use to authenticate the request
+        ip_address: data.ip,
+        user_agent: navigator.userAgent,
+        page_url: window.location.href,
+        domain_url: window.location.hostname,
+        visit_time: entry_time,  // Use the stored visit_time
+        left_time: null, // Initially null
+        session_time: null, // Initially null
+        session_id: generateSessionId(), // Unique session ID to track the session
+      };
+
+      console.log("Session data initialized:", sessionData);
+
+      // Send session data directly to your database API
+      await sendSessionData('start');
+    } else {
+      console.error('Failed to fetch user location:', data.message);
+    }
+  } catch (error) {
+    console.error('Error fetching geolocation data:', error);
+  }
+}
+
+function generateSessionId() {
+  // Generate a simple unique session ID (You can replace this with a more robust approach if needed)
+  return 'session-' + Math.random().toString(36).substr(2, 9);
+}
+
+async function sendSessionData(type) {
+ 
+ 
+  try {
+    const apiUrl = 'https://ewebsftp.com/GoogelAnalytics/Visitor/save_visitor_data';
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(sessionData),
+    });
+
+    if (response.ok) {
+
+      console.log(`Session ${type} data successfully sent to the API:`, sessionData);
+    } else {
+      console.error(`Failed to send session ${type} data:`, response.statusText);
+    }
+  } catch (error) {
+    console.error(`Error sending session ${type} data:`, error);
+  }
+}
+
+window.onload = function () {
+  getUserLocation();
+};
+
+// Capture page change or reload events (unload or beforeunload)
+window.addEventListener('beforeunload', async function (event) {
+  const sessionEndTime = new Date();
+  const formattedLeftTime = sessionEndTime.toLocaleString('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true,
+  });
+
+  // Calculate session duration in seconds
+  let entry_time = localStorage.getItem('entry_time');
+  console.log(entry_time);
+  const sessionDurationSeconds = (sessionEndTime - new Date(entry_time)) / 1000;
+  const minutes = Math.floor(sessionDurationSeconds / 60);
+  const seconds = Math.floor(sessionDurationSeconds % 60);
+  const formattedSessionTime = `${minutes} m ${seconds} s`;
+
+  // Update sessionData with left time and session duration
+  sessionData.left_time = formattedLeftTime;
+  sessionData.session_time = formattedSessionTime;
+
+  if(sessionData.left_time!==null){
+    localStorage.removeItem('entry_time')
+  }
+
+  // Send session data on page unload
+  try {
+    await sendSessionData('end');
+    // API call when session ends
+  } catch (error) {
+    console.error('Error sending session data on unload:', error);
+  }
+});
+
+// Optionally handle reloads to avoid sending redundant data
+window.addEventListener('load', function () {
+  const storedSessionId = sessionStorage.getItem('session_id');
+  if (storedSessionId) {
+    sessionData.session_id = storedSessionId;
+  } else {
+    sessionStorage.setItem('session_id', sessionData.session_id);
+  }
+});
+
+    </script>
+   -->
+  </body>
+</html>

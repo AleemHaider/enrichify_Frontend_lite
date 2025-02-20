@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Slim scrollbar styles */
+.slim-scrollbar {
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #c4c4c4 transparent;
+  scroll-behavior: smooth; /* For Firefox */
+}
+
+.slim-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.slim-scrollbar::-webkit-scrollbar-thumb {
+  background: #c4c4c4;
+  border-radius: 10px;
+}
+
+.slim-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+.slim-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+
+.main_layout {
+    margin-left:0; /* Reset margin for screens 640px or greater */
+  }
+
+  @media only screen and (min-width: 640px) {
+    .main_layout {
+      margin-left:250px; /* Reset margin for screens 640px or greater */
+    }
+  }
+
+  /* for hamburger */
+  @media only screen and (min-width: 640px) {
+    .hamburger {
+      display: none;
+    }
+  }
+
+  /* for chat */
+  @media only screen and (min-width: 640px) {
+    .hamburger {
+      display: none;
+    }
+
+    #chat-parent {
+      height: calc(100vh - 64px);
+    }
+  }
