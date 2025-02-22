@@ -10,11 +10,19 @@ import Request from "../pages/request";
 import Projects from "../pages/Projects";
 import TrafficTable from "../pages/Projects/TrafficTable";
 import ProjectsLayout from "../pages/Projects/ProjectsLayout";
+import Login from "../client/pages/auth";
 
 const Routers = () => {
   return (
     <>
       <HashRouter>
+
+        {/* Client Panel Routes */}
+        <Routes>
+          <Route path="/client" element={<PublicRoute><Login /></PublicRoute>} />
+          {/* <Route path="/client/home" element={<Layout><Home /></Layout>} /> */}
+        </Routes>
+
         <Routes>
           {/* Admin Panel Routes */}
           <Route
@@ -25,9 +33,9 @@ const Routers = () => {
               </PublicRoute>
             }
           />
-          
 
-<Route
+
+          <Route
             path="/otp"
             element={
               <PublicRoute>
@@ -39,16 +47,16 @@ const Routers = () => {
             path="/home"
             element={
               <Layout>
-              <Home/>
+                <Home />
               </Layout>
             }
           />
-          
-           <Route
+
+          <Route
             path="/projects"
             element={
               <Layout>
-              <Projects/>
+                <Projects />
               </Layout>
             }
           />
@@ -65,8 +73,8 @@ const Routers = () => {
             path="/project/traffic/:key"
             element={
               <Layout>
-              <ProjectsLayout>
-              <TrafficTable />
+                <ProjectsLayout>
+                  <TrafficTable />
                 </ProjectsLayout>
               </Layout>
             }
@@ -75,13 +83,13 @@ const Routers = () => {
             path="/project/requests/:key"
             element={
               <Layout>
-              <ProjectsLayout>
-              <Request/>
-              </ProjectsLayout>
+                <ProjectsLayout>
+                  <Request />
+                </ProjectsLayout>
               </Layout>
             }
           />
-        {/* <Route
+          {/* <Route
             path="/projects/requests/:key"
             element={
               <Layout>
@@ -93,7 +101,7 @@ const Routers = () => {
             path="/fileupload"
             element={
               <Layout>
-              <File/>
+                <File />
               </Layout>
             }
           />
@@ -101,11 +109,11 @@ const Routers = () => {
             path="/project/requests/:key/enrichdata/:id"
             element={
               <Layout>
-              <ProjectsLayout>
-              <EnrichData/>
-              </ProjectsLayout>
+                <ProjectsLayout>
+                  <EnrichData />
+                </ProjectsLayout>
               </Layout>
-             
+
             }
           />
         </Routes>
