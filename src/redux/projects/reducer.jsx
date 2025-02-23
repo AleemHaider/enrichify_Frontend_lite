@@ -13,9 +13,15 @@ import {
     GENERATE_API_KEY_FAILURE,
     GET_API_KEYS,
     GET_API_KEYS_SUCCESS,
-    GET_API_KEYS_FAILURE
+    GET_API_KEYS_FAILURE,
+    GET_SUB_USERS,
+    GET_SUB_USERS_SUCCESS,
+    GET_SUB_USERS_FAILURE,
+    ADD_SUB_USER,
+    ADD_SUB_USER_SUCCESS,
+    ADD_SUB_USER_FAILURE
 } from "../../constants";
-import { addCredits, getApiKeys } from "./action";
+import { addCredits, getApiKeys, getSubUsers } from "./action";
 
 const initial_state = {
     createProject: {
@@ -38,6 +44,20 @@ const initial_state = {
         error: "",
         loading: false,
     },
+    addSubUser: {
+        data: null,
+        message: "",
+        error: "",
+        loading: false,
+    },
+
+    getSubUsers: {
+        data: null,
+        message: "",
+        error: "",
+        loading: false,
+    },
+
     getProjects: {
         data: null,
         message: "",
@@ -298,6 +318,81 @@ const projectReducer = (state = initial_state, { type, payload }) => {
                 },
             };
 
+
+
+
+
+
+
+
+        // SUB USERS
+
+        case GET_SUB_USERS:
+            return {
+                ...state,
+                getSubUsers: {
+                    ...state.getSubUsers,
+                    loading: true,
+                    data: null, // Reset data while loading
+                },
+            };
+
+        case GET_SUB_USERS_SUCCESS:
+            return {
+                ...state,
+                getSubUsers: {
+                    ...state.getSubUsers,
+                    loading: false,
+                    message: payload.message,
+                    data: payload.data,
+                    error: null,
+                },
+            };
+
+        case GET_SUB_USERS_FAILURE:
+            return {
+                ...state,
+                getSubUsers: {
+                    ...state.getSubUsers,
+                    loading: false,
+                    error: payload,
+                },
+            };
+
+
+
+            case ADD_SUB_USER:
+                return {
+                    ...state,
+                    addSubUser: {
+                        ...state.addSubUser,
+                        loading: true,
+                        data: null, // Reset data while loading
+                    },
+                };
+    
+            case ADD_SUB_USER_SUCCESS:
+                return {
+                    ...state,
+                    addSubUser: {
+                        ...state.addSubUser,
+                        loading: false,
+                        message: payload.message,
+                        data: payload.data,
+                        error: null,
+                    },
+                };
+    
+            case ADD_SUB_USER_FAILURE:
+                return {
+                    ...state,
+                    addSubUser: {
+                        ...state.addSubUser,
+                        loading: false,
+                        error: payload,
+                    },
+                };
+    
         default:
             return state;
     }

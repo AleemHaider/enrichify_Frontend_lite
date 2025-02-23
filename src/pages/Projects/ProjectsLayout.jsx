@@ -39,8 +39,8 @@ const {key}=useParams()
             </NavLink>
           </li>
           <li className="me-2">
-            <button
-              
+            <NavLink 
+            to={`/project/users/${key}`}
               onClick={() => setActiveTab('Users')}
               className={`inline-flex items-center justify-center p-4 border-b-2 rounded-t-lg group ${
                 activeTab === 'Users'
@@ -49,7 +49,7 @@ const {key}=useParams()
               }`}
             >
               Users
-            </button>
+            </NavLink>
           </li>
           <li className="me-2">
             <button

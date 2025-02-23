@@ -1,4 +1,4 @@
-import { ADD_CREDITS, CREATE_PROJECT, GENERATE_API_KEY, GET_API_KEYS, GET_CREDITS, GET_PROJECT_VISITORS, GET_PROJECTS} from "../../constants/index"
+import { ADD_CREDITS, CREATE_PROJECT, GENERATE_API_KEY, GET_API_KEYS, GET_CREDITS, GET_PROJECT_VISITORS, GET_PROJECTS, GET_SUB_USERS} from "../../constants/index"
 export const getProjects = (data) => {
     return ({
         type: GET_PROJECTS,
@@ -44,3 +44,10 @@ export const getProjectVisitors = (data) => {
         payload: data
     });
 };
+
+export const getSubUsers = (data) => {
+    return ({
+        type: GET_SUB_USERS,
+        payload: data
+    })
+}

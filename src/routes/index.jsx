@@ -10,6 +10,7 @@ import Request from "../pages/request";
 import Projects from "../pages/Projects";
 import TrafficTable from "../pages/Projects/TrafficTable";
 import ProjectsLayout from "../pages/Projects/ProjectsLayout";
+import Users from "../pages/Projects/Users";
 
 const Routers = () => {
   return (
@@ -67,6 +68,17 @@ const Routers = () => {
               <Layout>
               <ProjectsLayout>
               <TrafficTable />
+                </ProjectsLayout>
+              </Layout>
+            }
+          />
+
+        <Route
+            path="/project/users/:key"
+            element={
+              <Layout>
+              <ProjectsLayout>
+              <Users />
                 </ProjectsLayout>
               </Layout>
             }

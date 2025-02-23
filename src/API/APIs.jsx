@@ -59,8 +59,8 @@ export const callApiLinkedIn = async (url, requestType, body, auth) => {
 // const token='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjMiLCJlbWFpbCI6ImZ1cnFhbjMxMzA0QGdtYWlsLmNvbSIsImV4cCI6MzAxNzM0MDExMzg2LCJpc3N1ZWRfYXQiOnsiZGF0ZSI6IjIwMjQtMTItMTIgMTM6NDk6NDYuMDAwMDAwIiwidGltZXpvbmVfdHlwZSI6MywidGltZXpvbmUiOiJVVEMifX0.B2vPvyxxQ6LrqXIrtxeZ36rcBzABysb-Y9iL-bz8NFI'
 export const callApi = async (url, requestType, body, auth) => {
   // let host = 'https://www.googledevelopertoolkit.com/GoogleAnalytics';
-  // let host='http://192.168.1.42/GoogelAnalytics'/
-  let host='https://ewebsftp.com/GoogelAnalytics'
+  let host='http://192.168.1.34/GoogleAnalytics'
+  // let host='https://ewebsftp.com/GoogelAnalytics'
 
 
   console.log("request... ",host+url, requestType, body, auth)
