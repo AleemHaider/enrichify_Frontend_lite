@@ -4,11 +4,12 @@ import NavBar from './NavBar'
 import { Navigate } from 'react-router'
 import { useSelector } from 'react-redux'
 
-const Layout = ({ children }) => {
-  const isAuthorized = useSelector((state) => state?.authReducer?.isAuthenticated)
+const ClientLayout = ({ children }) => {
+  // const isAuthorized = useSelector((state) => state?.authReducer?.isAuthenticated)
+  const isAuthorized = true
 
   if (!isAuthorized) {
-    return <Navigate to="/admin" />;
+    return <Navigate to="/client" />;
   }
   return (
     <>
@@ -23,4 +24,4 @@ const Layout = ({ children }) => {
   )
 }
 
-export default Layout
+export default ClientLayout

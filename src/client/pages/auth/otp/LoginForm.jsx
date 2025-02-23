@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
-import InputField from '../../components/ui/InputField';
+import InputField from '../../../components/ui/InputField';
 import { NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Loader from '../../components/ui/Loader';
+import Loader from '../../../components/ui/Loader';
 // import { SLogo } from '../../../constants/Svgs';
 import { useDispatch, useSelector } from 'react-redux';
 // import { loginUser } from '../../../redux/auth/action';
-import Logo from '../../../assets/images/logo.png'
+import Logo from '../../../../assets/images/logo.png'
+import OtpInputs from './OtpInputs';
 
-export default function LoginForm() {
+export default function OtpScreen() {
     // const response = useSelector((state) => state?.authReducer)
     const loading = useSelector((state) => state.authReducer.loading)
     const dispatch = useDispatch();
+    const [otp, setOtp] = useState(new Array(6).fill(''));
+    const [moveFocus, setMoveFocus] = useState(null);
     const [data, setData] = useState({ email: "", password: "", })
 
     const handleValues = (value, type) => {
@@ -39,14 +42,29 @@ export default function LoginForm() {
                         <div className="mx-auto mb-8">
                             <img src={Logo} alt='logo' className={"w-[165px] mx-auto"} />
                         </div>
+                        <p className="text-gray-5 text-lg text-center font-medium">An OTP has been sent to your email</p>
+                        {/* <p className="text-gray-500 text-sm text-center">A verification code has been sent to your phone number and email. The code is valid for 10 minutes</p> */}
                         <div className="mt-2">
-                            <InputField label={"Enter Email"} type={"email"} value={data?.email} onChange={handleValues} />
+                            {/* <InputField label={"Enter Email"} type={"email"} value={data?.email} onChange={handleValues} /> */}
+                            <label htmlFor={""} className='text-sm font-semibol'>OTP Verification</label>
+                            <div className="flex flex-row items-center justify-between mx-auto w-full max-w-xs mt-1.5 mb-4">
+                                {otp.map((_, index) => (
+                                    <OtpInputs
+                                        key={index}
+                                        type={"text"}
+                                        otp={otp}
+                                        setOtp={setOtp}
+                                        index={index}
+                                        moveFocus={moveFocus}
+                                        setMoveFocus={setMoveFocus}
+                                    />
+                                ))}
+                            </div>
                         </div>
                         <div>
                             <div className="mt-2">
-                                <InputField label={"Password"} placeholder={"Enter Password"} type={"password"} value={data?.password} onChange={handleValues} />
+                                <InputField label={"Create Password"} placeholder={"Enter Password"} type={"password"} value={data?.password} onChange={handleValues} />
                             </div>
-                            <label htmlFor="" className='text-red-500 text-sm mt-2 block text-end cursor-pointer'>Forget Password</label>
                         </div>
                         <div>
                             <button

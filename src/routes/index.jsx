@@ -11,6 +11,8 @@ import Projects from "../pages/Projects";
 import TrafficTable from "../pages/Projects/TrafficTable";
 import ProjectsLayout from "../pages/Projects/ProjectsLayout";
 import Login from "../client/pages/auth";
+import ClientLayout from "../client/components/layout";
+import ClientHome from "../client/pages/home";
 
 const Routers = () => {
   return (
@@ -20,7 +22,7 @@ const Routers = () => {
         {/* Client Panel Routes */}
         <Routes>
           <Route path="/client" element={<PublicRoute><Login /></PublicRoute>} />
-          {/* <Route path="/client/home" element={<Layout><Home /></Layout>} /> */}
+          <Route path="/client/dashboard" element={<ClientLayout><ClientHome /></ClientLayout>} />
         </Routes>
 
         <Routes>
