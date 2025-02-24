@@ -14,7 +14,7 @@ const ClientLayout = ({ children }) => {
   return (
     <>
       <SideBar />
-      <div className="sm:ml-64">
+      <div className="sm:ml-64 bg-[#F5F7FA] min-h-screen">
         <NavBar />
         <div className="lg:p-8 sm:p-6 p-4">
           {children}

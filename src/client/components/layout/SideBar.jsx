@@ -74,11 +74,11 @@ const SideBar = () => {
 
       <aside
         id="logo-sidebar"
-        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed top-0 left-0 z-40 w-64 h-screen shadow-sm transition-transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
           } sm:translate-x-0`}
         aria-label="Sidebar"
       >
-        <div className="bg-gray-50 h-full px-5 py-4 overflow-y-auto flex flex-col">
+        <div className="bg-white h-full px-5 py-4 overflow-y-auto flex flex-col">
           <NavLink onClick={closeSidebar} to="/admin/" className="flex items-center justify-center pt5">
             {/* <SLogo logoSize={"w-[80px] sm:w-[120px] lg:w-36"} /> */}
             <img src={Logo} alt='logo' className={"w-[140px] sm:w-[165px] lg:w-40 w-[165px mx-auo"} />
@@ -112,8 +112,8 @@ const SideBar = () => {
             </li>} */}
             <li>
               <NavLink onClick={closeSidebar} to='/client/dashboard' className={`flex items-center p-2  text-gray-800 hover:text-colorPrimary group font-semibold text-lg`}>
-                <i className="fa-brands fa-leanpub"></i>
-                <img src={home} alt="home" className="text-black bg-black"/>
+                {/* <i className="fa-brands fa-leanpub"></i> */}
+                <img src={home} alt="home" className="bg-transparent w-5" />
                 <span className="flex-1 ms-3 whitespace-nowrap font-semibold">
                   Dashboard
                 </span>

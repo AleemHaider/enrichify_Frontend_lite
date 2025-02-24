@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 // import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 // import { Logout } from '../../../redux/auth/action';
 import { useDispatch, useSelector } from 'react-redux';
 // import { getUserData } from '../../../redux/userData/action';
@@ -9,6 +9,8 @@ import defaultAvatar from '../../assets/imgs/default-avatar-icon.png'
 
 const NavBar = () => {
   const navigate = useNavigate()
+  const pathName = useLocation().pathname.split("/")[2]
+
   const dispatch = useDispatch()
   // const data = { name: "Shahzaib Qasim", email: "shahziab Qasim@gmail.com", profile_picture: "https://tailwindui.com/img/avatar-2.jpg" }
   // const data = useSelector((state) => state.userDataReducer?.data)
@@ -54,7 +56,8 @@ const NavBar = () => {
   }
 
   return (
-    <nav className="shadow-sm flex sm:flex-nowrap sm:flex-row flex-wrap-reverse gap-5  items-center justify-between p-4 bg-gray-50 w-full">
+    <nav className="shadow-sm flex sm:flex-nowrap sm:flex-row flex-wrap-reverse gap-5  items-center justify-between p-4 bg-white w-full">
+      <h1 className='capitalize text-lg font-semibold text-[#343C6A]'>{pathName}</h1>
       {/* <div className="relative lg:w-[auto] w-full">
         <div className="absolute inset-y-1 left-3 flex justify-center items-center">
           <svg className='z-10' width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.4778 19.4778L17.7158 17.7158M1.85791 10.2274C1.85791 5.60504 5.60504 1.85791 10.2274 1.85791C14.8497 1.85791 18.5968 5.60504 18.5968 10.2274C18.5968 14.8497 14.8497 18.5968 10.2274 18.5968C5.60504 18.5968 1.85791 14.8497 1.85791 10.2274Z" stroke="#1F2937" stroke-width="1.32149" stroke-linecap="round" stroke-linejoin="round" /></svg>
