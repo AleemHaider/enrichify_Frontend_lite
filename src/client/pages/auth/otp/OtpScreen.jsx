@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Logo from '../../../../assets/images/logo.png'
 import OtpInputs from './OtpInputs';
 
-export default function OtpScreen() {
+export default function ClientOtpScreen() {
     // const response = useSelector((state) => state?.authReducer)
     const loading = useSelector((state) => state.authReducer.loading)
     const dispatch = useDispatch();

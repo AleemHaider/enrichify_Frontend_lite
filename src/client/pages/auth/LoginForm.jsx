@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import InputField from '../../components/ui/InputField';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loader from '../../components/ui/Loader';
 // import { SLogo } from '../../../constants/Svgs';
@@ -9,10 +9,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import Logo from '../../../assets/images/logo.png'
 
 export default function LoginForm() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [data, setData] = useState({ email: "", password: "", secret_key: "" })
     // const response = useSelector((state) => state?.authReducer)
     const loading = useSelector((state) => state.authReducer.loading)
-    const dispatch = useDispatch();
-    const [data, setData] = useState({ email: "", password: "", })
 
     const handleValues = (value, type) => {
         console.log(value, type);
@@ -24,7 +25,7 @@ export default function LoginForm() {
     }
 
     const handelSubmit = () => {
-        if (!data?.email || !data?.password) {
+        if (!data?.email || !data?.password || !data?.secret_key) {
             return toast.error("All fields are required")
         }
         console.log(data);
@@ -46,7 +47,13 @@ export default function LoginForm() {
                             <div className="mt-2">
                                 <InputField label={"Password"} placeholder={"Enter Password"} type={"password"} value={data?.password} onChange={handleValues} />
                             </div>
-                            <label htmlFor="" className='text-red-500 text-sm mt-2 block text-end cursor-pointer'>Forget Password</label>
+                            <label htmlFor="" onClick={() => navigate("forgot-password")} className='text-red-500 text-sm mt-2 block text-end cursor-pointer'>Forget Password</label>
+                        </div>
+                        <div>
+                            <div className="-mt-6">
+                                <InputField label={"Secret Key"} placeholder={"Enter Secret Key"} type={"secret_key"} value={data?.secret_key} onChange={handleValues} />
+                            </div>
+                            {/* <label htmlFor="" onClick={() => navigate("forgot-password")} className='text-red-500 text-sm mt-2 block text-end cursor-pointer'>Forget Password</label> */}
                         </div>
                         <div>
                             <button
