@@ -7,7 +7,7 @@ export const ClientPublicRoutes = ({ children }) => {
   const isAuthorized = false
 
   if (isAuthorized) {
-    return <Navigate to="/client/home" />;
+    return <Navigate to="/client/dashboard" />;
   }
 
   return (

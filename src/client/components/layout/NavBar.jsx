@@ -99,7 +99,7 @@ const NavBar = () => {
                   <span className="sr-only">Open user menu</span>
                   <div className="flex items-center">
                     <div className="flex items-center">
-                      <img className="w-8 h-8 rounded-full bg-gray-200" src={defaultAvatar} alt="user" />
+                      <img className="w-8 h-8 rounded-full bg-gray-200" src={"https://tailwindcss.com/_next/static/media/avatar-2.74328963.png"} alt="user" />
                       <div className="md:max-w-[130px] max-w-[130px]">
                         <span className="block text-sm text-gray-900 truncate font-medium ms-2">{data?.full_name}</span>
                         <span className="block text-xs text-gray-500 truncate ms-2">{data?.email}</span>

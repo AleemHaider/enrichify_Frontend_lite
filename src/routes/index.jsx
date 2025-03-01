@@ -1,4 +1,4 @@
-import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { PublicRoute } from "./PublicRoutes";
 import Layout from "../components/layout/index";
 import LoginPage from "../pages/auth/login/Index";
@@ -13,6 +13,8 @@ import ProjectsLayout from "../pages/Projects/ProjectsLayout";
 import Login from "../client/pages/auth";
 import ClientLayout from "../client/components/layout";
 import ClientHome from "../client/pages/home";
+import Settings from "../client/pages/settings";
+import VisitorDetail from "../client/pages/home/VisitorDetail";
 
 const Routers = () => {
   return (
@@ -23,6 +25,8 @@ const Routers = () => {
         <Routes>
           <Route path="/client" element={<PublicRoute><Login /></PublicRoute>} />
           <Route path="/client/dashboard" element={<ClientLayout><ClientHome /></ClientLayout>} />
+          <Route path="/client/dashboard/visitors" element={<ClientLayout><VisitorDetail /></ClientLayout>} />
+          <Route path="/client/settings" element={<ClientLayout><Settings /></ClientLayout>} />
         </Routes>
 
         <Routes>
