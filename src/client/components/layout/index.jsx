@@ -6,7 +6,10 @@ import { useSelector } from 'react-redux'
 
 const ClientLayout = ({ children }) => {
   // const isAuthorized = useSelector((state) => state?.authReducer?.isAuthenticated)
-  const isAuthorized = true
+  const isAuthorized = useSelector((state) => state.clientAuthReducer.isAuthenticated);
+  // const isAuthorized = true
+  console.log("isAuthorized", isAuthorized);
+
 
   if (!isAuthorized) {
     return <Navigate to="/client" />;

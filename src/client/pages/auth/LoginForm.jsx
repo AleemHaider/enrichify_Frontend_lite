@@ -7,13 +7,14 @@ import Loader from '../../components/ui/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 // import { loginUser } from '../../../redux/auth/action';
 import Logo from '../../../assets/images/logo.png'
+import { loginClient } from '../../../redux/client-redux/auth/action';
 
 export default function LoginForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [data, setData] = useState({ email: "", password: "", secret_key: "" })
-    // const response = useSelector((state) => state?.authReducer)
-    const loading = useSelector((state) => state.authReducer.loading)
+    const loading = useSelector((state) => state.clientAuthReducer.login.loading)
+    const response = useSelector((state) => state.clientAuthReducer.login)
 
     const handleValues = (value, type) => {
         console.log(value, type);
@@ -29,7 +30,7 @@ export default function LoginForm() {
             return toast.error("All fields are required")
         }
         console.log(data);
-        // dispatch(loginUser(data))
+        dispatch(loginClient(data))
     }
 
     return (

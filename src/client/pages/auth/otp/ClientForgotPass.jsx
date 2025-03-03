@@ -42,35 +42,30 @@ export default function ClientOtpScreen() {
                         <div className="mx-auto mb-8">
                             <img src={Logo} alt='logo' className={"w-[165px] mx-auto"} />
                         </div>
-                        <p className="text-gray-5 text-lg text-center font-medium">{data.email ?"An OTP has been sent to your email":"Enter email to forgot password"}</p>
-                        {!data.email ?
+                        <p className="text-gray-5 text-lg text-center font-medium">An OTP has been sent to your email</p>
+                        {/* <p className="text-gray-500 text-sm text-center">A verification code has been sent to your phone number and email. The code is valid for 10 minutes</p> */}
+                        <div className="mt-2">
+                            {/* <InputField label={"Enter Email"} type={"email"} value={data?.email} onChange={handleValues} /> */}
+                            <label htmlFor={""} className='text-sm font-semibol'>OTP Verification</label>
+                            <div className="flex flex-row items-center justify-between mx-auto w-full max-w-xs mt-1.5 mb-4">
+                                {otp.map((_, index) => (
+                                    <OtpInputs
+                                        key={index}
+                                        type={"text"}
+                                        otp={otp}
+                                        setOtp={setOtp}
+                                        index={index}
+                                        moveFocus={moveFocus}
+                                        setMoveFocus={setMoveFocus}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                        <div>
                             <div className="mt-2">
-                                <InputField label={"Enter Email"} placeholder={"Enter Email"} type={"email"} value={data?.email} onChange={handleValues} />
-                            </div> :
-                            <>
-                                <div className="mt-2">
-                                    {/* <InputField label={"Enter Email"} type={"email"} value={data?.email} onChange={handleValues} /> */}
-                                    <label htmlFor={""} className='text-sm font-semibol'>OTP Verification</label>
-                                    <div className="flex flex-row items-center justify-between mx-auto w-full max-w-xs mt-1.5 mb-4">
-                                        {otp.map((_, index) => (
-                                            <OtpInputs
-                                                key={index}
-                                                type={"text"}
-                                                otp={otp}
-                                                setOtp={setOtp}
-                                                index={index}
-                                                moveFocus={moveFocus}
-                                                setMoveFocus={setMoveFocus}
-                                            />
-                                        ))}
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="mt-2">
-                                        <InputField label={"Create Password"} placeholder={"Enter Password"} type={"password"} value={data?.password} onChange={handleValues} />
-                                    </div>
-                                </div>
-                            </>}
+                                <InputField label={"Create Password"} placeholder={"Enter Password"} type={"password"} value={data?.password} onChange={handleValues} />
+                            </div>
+                        </div>
                         <div>
                             <button
                                 type="submit"

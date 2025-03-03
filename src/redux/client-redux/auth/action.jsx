@@ -1,8 +1,8 @@
-import { LOGIN, LOGOUT, OTP_VERIFICATION, RESEND_OTP, SET_STATUS_NULL} from "../../../constants/index"
+import { CLIENT_LOGIN, LOGOUT, OTP_VERIFICATION, RESEND_OTP, SET_STATUS_NULL} from "../../../constants/index"
 
-export const login = (data) => {
+export const loginClient = (data) => {
     return ({
-        type: LOGIN,
+        type: CLIENT_LOGIN,
         payload: data
     })
 }
