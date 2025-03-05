@@ -2,37 +2,35 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getSubUsers } from '../../redux/projects/action'
-
+import AddSubUserModal from '../../components/ui/AddSubUserModal'
+import noUser from  "../../assets/svgs/no_user.svg"
 const Users = () => {
     const users=useSelector(state=>state.projectReducer.getSubUsers.data)
     const {key}=useParams()
 
-    const dispatch=useDispatch();
-    useEffect(() => {
-     dispatch(getSubUsers({secret_key:key}))
-    }, [users])
+    // const dispatch=useDispatch();
+    // useEffect(() => {
+    //  dispatch(getSubUsers({secret_key:key}))
+    // }, [users])
     
 
   return (
-    <div className='my-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-2 w-full'>
-        <div className='p-4 rounded-lg border bg-gray-50 shadow-sm'>
-            <h1 className='text-2xl font-bold'>Muhammad Furqan</h1>
-            <input className='mt-2' type="text"  value={"123456789"} />
-        </div>
-        <div className='p-4 rounded-lg border bg-gray-50 shadow-sm'>
-            <h1 className='text-2xl font-bold'>Muhammad Furqan</h1>
-            <input className='mt-2' type="text"  value={"123456789"} />
-        </div>
-        <div className='p-4 rounded-lg border bg-gray-50 shadow-sm'>
-            <h1 className='text-2xl font-bold'>Muhammad Furqan</h1>
-            <input className='mt-2' type="text"  value={"123456789"} />
-        </div>
-        <div className='p-4 rounded-lg border bg-gray-50 shadow-sm'>
-            <h1 className='text-2xl font-bold'>Muhammad Furqan</h1>
-            <input className='mt-2' type="text"  value={"123456789"} />
-        </div>
-
-    </div>
+    <><div className='flex justify-between items-end mt-2'><h1 className='text-xl'>Users</h1><AddSubUserModal/></div>
+     { users && users.length>0?
+         <div className='my-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-2 w-full'>
+         <div className='p-4 rounded-lg border bg-gray-50 shadow-sm'>
+             <h1 className='text-lg'>Email:<span className='bg-green-200 py-1 px-4 ml-2 rounded-full'>furqan31304@gmail.com</span></h1>
+             <h1 className='text-lg mt-2'>Password:<span className='bg-green-200 py-1 px-4 ml-2 rounded-full'>12345678</span></h1>
+         </div>
+     </div>
+     :
+     <div className='flex flex-col justify-center items-center '>
+        <img className='w-52' src={noUser} alt="" />
+            <h1 className='text-2xl text-gray-800 mt-2'>No Users Found</h1>
+     </div>
+     }
+    </>
+  
   )
 }
 
