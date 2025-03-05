@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const callApiLinkedIn = async (url, requestType, body, auth) => {
   let host = 'http://192.168.100.148:8082/';
+  // let host = 'http://192.168.100.148:8082/';
   
   // let host = 'http://54.219.173.101:8081/';
 

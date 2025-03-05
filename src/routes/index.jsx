@@ -1,4 +1,4 @@
-import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { PublicRoute } from "./PublicRoutes";
 import Layout from "../components/layout/index";
 import LoginPage from "../pages/auth/login/Index";
@@ -11,11 +11,30 @@ import Projects from "../pages/Projects";
 import TrafficTable from "../pages/Projects/TrafficTable";
 import ProjectsLayout from "../pages/Projects/ProjectsLayout";
 import Users from "../pages/Projects/Users";
+import Login from "../client/pages/auth";
+import ClientLayout from "../client/components/layout";
+import ClientHome from "../client/pages/home";
+import Settings from "../client/pages/settings";
+import VisitorDetail from "../client/pages/home/VisitorDetail";
+import ClientOtpScreen from "../client/pages/auth/otp/OtpScreen";
+import { ClientPublicRoutes } from "./ClientPublicRoutes";
+import EmailDetail from "../client/pages/home/EmailDetail";
 
 const Routers = () => {
   return (
     <>
       <HashRouter>
+
+        {/* Client Panel Routes */}
+        <Routes>
+          <Route path="/client" element={<ClientPublicRoutes><Login /></ClientPublicRoutes>} />
+          <Route path="/client/forgot-password" element={<ClientPublicRoutes><ClientOtpScreen /></ClientPublicRoutes>} />
+          <Route path="/client/dashboard" element={<ClientLayout><ClientHome /></ClientLayout>} />
+          <Route path="/client/dashboard/visitors" element={<ClientLayout><VisitorDetail /></ClientLayout>} />
+          <Route path="/client/dashboard/emailDetails" element={<ClientLayout><EmailDetail /></ClientLayout>} />
+          <Route path="/client/settings" element={<ClientLayout><Settings /></ClientLayout>} />
+        </Routes>
+
         <Routes>
           {/* Admin Panel Routes */}
           <Route
@@ -26,9 +45,9 @@ const Routers = () => {
               </PublicRoute>
             }
           />
-          
 
-<Route
+
+          <Route
             path="/otp"
             element={
               <PublicRoute>
@@ -40,16 +59,16 @@ const Routers = () => {
             path="/home"
             element={
               <Layout>
-              <Home/>
+                <Home />
               </Layout>
             }
           />
-          
-           <Route
+
+          <Route
             path="/projects"
             element={
               <Layout>
-              <Projects/>
+                <Projects />
               </Layout>
             }
           />
@@ -66,8 +85,8 @@ const Routers = () => {
             path="/project/traffic/:key"
             element={
               <Layout>
-              <ProjectsLayout>
-              <TrafficTable />
+                <ProjectsLayout>
+                  <TrafficTable />
                 </ProjectsLayout>
               </Layout>
             }
@@ -87,13 +106,13 @@ const Routers = () => {
             path="/project/requests/:key"
             element={
               <Layout>
-              <ProjectsLayout>
-              <Request/>
-              </ProjectsLayout>
+                <ProjectsLayout>
+                  <Request />
+                </ProjectsLayout>
               </Layout>
             }
           />
-        {/* <Route
+          {/* <Route
             path="/projects/requests/:key"
             element={
               <Layout>
@@ -105,7 +124,7 @@ const Routers = () => {
             path="/fileupload"
             element={
               <Layout>
-              <File/>
+                <File />
               </Layout>
             }
           />
@@ -113,11 +132,11 @@ const Routers = () => {
             path="/project/requests/:key/enrichdata/:id"
             element={
               <Layout>
-              <ProjectsLayout>
-              <EnrichData/>
-              </ProjectsLayout>
+                <ProjectsLayout>
+                  <EnrichData />
+                </ProjectsLayout>
               </Layout>
-             
+
             }
           />
         </Routes>

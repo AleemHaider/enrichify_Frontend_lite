@@ -3,6 +3,21 @@
 @tailwind utilities;
 
 
+/* client css */
+#client .active{
+  color: #1814F3;
+  border-left: 3px solid #1814F3;
+  border-radius: 3px 3px;
+  padding-left: 20px;
+}
+
+#client .active .icon{
+  color: #1814F3;
+}
+
+/* client css */
+
+
 /* Slim scrollbar styles */
 .slim-scrollbar {
   scrollbar-width: thin; /* For Firefox */

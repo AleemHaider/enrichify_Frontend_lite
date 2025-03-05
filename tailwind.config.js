@@ -4,6 +4,7 @@ module.exports = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{html,js,jsx,tsx}"
   ],
   theme: {
     extend: {
@@ -13,7 +14,8 @@ module.exports = {
         orangePrimary:"#F2994A",
         yellowPrimary:"#F2C94C",
         greenPrimary:"#6FCF97",
-        skyPrimary:"#56CCF2"
+        skyPrimary:"#56CCF2",
+        cPrimary: "#1814F3",
       },
       backgroundImage: {
         'gradient-purple': 'linear-gradient(to bottom, #A997FB, #6243F8)',
