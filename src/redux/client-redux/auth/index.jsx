@@ -1,6 +1,5 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { CLIENT_LOGIN, CLIENT_LOGIN_SUCCESS, CLIENT_LOGIN_FAILURE, RESEND_OTP_RESET, RESEND_OTP_SUCCESS, OTP_VERIFICATION_FAILURE, OTP_VERIFICATION_SUCCESS, OTP_VERIFICATION, RESEND_OTP, RESEND_OTP_FAILURE } from "../../../constants/index";
-import { callApi } from "../../../API/APIs";
+import { CLIENT_LOGIN, CLIENT_LOGIN_SUCCESS, CLIENT_LOGIN_FAILURE, RESEND_OTP_RESET, RESEND_OTP_SUCCESS, OTP_VERIFICATION_FAILURE, OTP_VERIFICATION_SUCCESS, OTP_VERIFICATION, RESEND_OTP, RESEND_OTP_FAILURE, CLIENT_FORGOT_PASSWORD, CLIENT_FORGOT_PASSWORD_SUCCESS, CLIENT_FORGOT_PASSWORD_FAILURE, CLIENT_RESET_PASSWORD_SUCCESS, CLIENT_RESET_PASSWORD_FAILURE, CLIENT_RESET_PASSWORD } from "../../../constants/index";
 import { toast } from "react-toastify";
 import { callClientApi } from "../../../API/ClientAPIs";
 
@@ -18,39 +17,34 @@ function* watcherLogin(data) {
     }
 }
 
-function* watcherOtpVerification(data) {
-    let url = '/Auth_controller/otpVerify';
-    const Data = yield call(callApi, url, 'POST', data.payload);
+function* watcherForgotPassword(data) {
+    let url = '/forgotPassword';
+    const Data = yield call(callClientApi, url, 'POST', data.payload);
     if (Data.status === 200) {
-        yield put({ type: OTP_VERIFICATION_SUCCESS, payload: Data.data });
-        localStorage.setItem('cAuthToken', Data.data.token)
-        // yield put({type : GET_USER});
+        yield put({ type: CLIENT_FORGOT_PASSWORD_SUCCESS, payload: Data.data });
     }
     else {
-        yield put({ type: OTP_VERIFICATION_FAILURE, payload: Data.data.message })
+        yield put({ type: CLIENT_FORGOT_PASSWORD_FAILURE, payload: Data.data.message })
         toast.error(Data?.data?.message)
     }
 }
 
-function* watcherResendOtp(data) {
-    let url = '/Auth_controller/resendOtp';
-    const Data = yield call(callApi, url, 'POST', data.payload);
+function* watcherResetPassword(data) {
+    let url = '/resetPassword';
+    const Data = yield call(callClientApi, url, 'POST', data.payload);
     if (Data.status === 200) {
-        yield put({ type: RESEND_OTP_RESET });
+        yield put({ type: CLIENT_RESET_PASSWORD_SUCCESS, payload: Data.data });
         toast.success(Data?.data?.message)
-        yield put({ type: RESEND_OTP_SUCCESS, payload: Data.data });
-        // localStorage.setItem('cAuthToken',Data.data.token)
-        // yield put({type : GET_USER});
     }
     else {
-        yield put({ type: RESEND_OTP_FAILURE, payload: Data.data.message })
+        yield put({ type: CLIENT_RESET_PASSWORD_FAILURE, payload: Data.data.message })
         toast.error(Data?.data?.message)
     }
 }
 
 export default function* watchClientAuth() {
     yield takeLatest(CLIENT_LOGIN, watcherLogin)
-    yield takeLatest(OTP_VERIFICATION, watcherOtpVerification)
-    yield takeLatest(RESEND_OTP, watcherResendOtp)
+    yield takeLatest(CLIENT_FORGOT_PASSWORD, watcherForgotPassword)
+    yield takeLatest(CLIENT_RESET_PASSWORD, watcherResetPassword)
 
 }

@@ -1,8 +1,7 @@
 import axios from "axios";
 
 export const callClientApi = async (url, requestType, body, auth) => {
-  // let host = 'http://255.255.255.0'
-  let host = 'http://192.168.107.92'
+  let host = 'http://192.168.100.50'
 
   console.log("request... ", host + url, requestType, body, auth)
   let token = localStorage.getItem("cAuthToken");

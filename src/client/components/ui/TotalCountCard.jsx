@@ -2,6 +2,8 @@ import React from 'react'
 
 const TotalCountCard = ({ d }) => {
     const { title, total, icon } = d
+    console.log("total: ", total);
+    
     return (
         <div className='bg-white rounded-3xl p-5 flex items-center'>
             <div className='flex items-center gap-4'>

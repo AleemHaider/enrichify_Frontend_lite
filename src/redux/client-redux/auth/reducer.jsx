@@ -1,5 +1,13 @@
 import {
-  CLIENT_LOGIN, CLIENT_LOGIN_FAILURE, CLIENT_LOGIN_SUCCESS, LOGOUT,
+  CLIENT_EMPTY_FORGOT,
+  CLIENT_FORGOT_PASSWORD,
+  CLIENT_FORGOT_PASSWORD_FAILURE,
+  CLIENT_FORGOT_PASSWORD_SUCCESS,
+  CLIENT_LOGIN, CLIENT_LOGIN_FAILURE, CLIENT_LOGIN_SUCCESS,
+  CLIENT_RESET_PASSWORD,
+  CLIENT_RESET_PASSWORD_FAILURE,
+  CLIENT_RESET_PASSWORD_SUCCESS,
+  LOGOUT_CLIENT,
   OTP_VERIFICATION,
   OTP_VERIFICATION_FAILURE,
   OTP_VERIFICATION_SUCCESS,
@@ -13,6 +21,7 @@ const initial_state = {
   isAuthenticated: localStorage.getItem("cAuthToken") && localStorage.getItem("cAuthToken") !== undefined
     ? true
     : false,
+  loading: false,
   login: {
     message: null,
     error: null,
@@ -20,13 +29,13 @@ const initial_state = {
     status: null,
     data: null,
   },
-  resendOTP: {
+  forgotPassword: {
     message: null,
     error: null,
     loading: false,
     status: null,
   },
-  verification: {
+  resetPassword: {
     message: null,
     error: null,
     loading: false,
@@ -65,91 +74,89 @@ const clientAuthReducer = (state = initial_state, { type, payload }) => {
           error: payload,
         }
       };
-    case LOGOUT:
-      localStorage.removeItem('cAuthToken');
 
-      // Remove other items if needed
+    case LOGOUT_CLIENT:
+      localStorage.removeItem('cAuthToken');
       return {
         ...state,
+        isAuthenticated: false,
         login: {
           ...state.login,
           isAuthenticated: false,
-
         },
       };
 
-    case OTP_VERIFICATION:
+    case CLIENT_FORGOT_PASSWORD:
       return {
         ...state,
-        verification: {
-          ...state.verification,
+        loading: true,
+        forgotPassword: {
+          ...state.forgotPassword,
           loading: true,
         },
       };
-    case OTP_VERIFICATION_SUCCESS:
-      localStorage.setItem("cAuthToken", payload.token);
-      localStorage.setItem('status', payload.status);
+    case CLIENT_FORGOT_PASSWORD_SUCCESS:
       return {
         ...state,
-        verification: {
-          ...state.verification,
+        loading: false,
+        forgotPassword: {
+          ...state.forgotPassword,
           loading: false,
           message: payload.message,
-          status: payload.status,
+          status: true,
         },
       };
-    case OTP_VERIFICATION_FAILURE:
+    case CLIENT_FORGOT_PASSWORD_FAILURE:
       return {
         ...state,
-        verification: {
-          ...state.verification,
+        loading: false,
+        forgotPassword: {
+          ...state.forgotPassword,
           loading: false,
-          error: payload.message,
+          status: false,
         },
       };
 
-    case RESEND_OTP:
+    case CLIENT_RESET_PASSWORD:
       return {
         ...state,
-        resendOTP: {
-          ...state.resendOTP,
+        loading: true,
+        resetPassword: {
+          ...state.resetPassword,
           loading: true,
         },
       };
-    case RESEND_OTP_SUCCESS:
+    case CLIENT_RESET_PASSWORD_SUCCESS:
       return {
         ...state,
-        resendOTP: {
-          ...state.resendOTP,
+        loading: false,
+        resetPassword: {
+          ...state.resetPassword,
           loading: false,
           message: payload.message,
-          status: payload.status,
+          status: true,
         },
       };
-    case RESEND_OTP_FAILURE:
+    case CLIENT_RESET_PASSWORD_FAILURE:
       return {
         ...state,
-        resendOTP: {
-          ...state.resendOTP,
+        loading: false,
+        resetPassword: {
+          ...state.resetPassword,
           loading: false,
-          status: payload.status,
+          status: false,
         },
       };
-    case SET_STATUS_NULL:
+
+    case CLIENT_EMPTY_FORGOT:
       return {
         ...state,
-        login: {
-          ...state.login,
+        resetPassword: {
+          ...state.resetPassword,
           status: null,
         },
-      };
-
-    case RESEND_OTP_RESET:
-      return {
-        ...state,
-        resendOTP: {
-          ...state.resendOTP,
-          loading: false,
+        resetPassword: {
+          ...state.resetPassword,
           status: null,
         },
       };

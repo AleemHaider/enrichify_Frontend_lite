@@ -17,6 +17,7 @@ import Settings from "../client/pages/settings";
 import VisitorDetail from "../client/pages/home/VisitorDetail";
 import ClientOtpScreen from "../client/pages/auth/otp/OtpScreen";
 import { ClientPublicRoutes } from "./ClientPublicRoutes";
+import EmailDetail from "../client/pages/home/EmailDetail";
 
 const Routers = () => {
   return (
@@ -29,6 +30,7 @@ const Routers = () => {
           <Route path="/client/forgot-password" element={<ClientPublicRoutes><ClientOtpScreen /></ClientPublicRoutes>} />
           <Route path="/client/dashboard" element={<ClientLayout><ClientHome /></ClientLayout>} />
           <Route path="/client/dashboard/visitors" element={<ClientLayout><VisitorDetail /></ClientLayout>} />
+          <Route path="/client/dashboard/emailDetails" element={<ClientLayout><EmailDetail /></ClientLayout>} />
           <Route path="/client/settings" element={<ClientLayout><Settings /></ClientLayout>} />
         </Routes>
 

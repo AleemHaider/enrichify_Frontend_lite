@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const callApiLinkedIn = async (url, requestType, body, auth) => {
   let host = 'http://192.168.100.148:8082/';
+  // let host = 'http://192.168.100.148:8082/';
   
   // let host = 'http://54.219.173.101:8081/';
 
@@ -60,7 +61,8 @@ export const callApiLinkedIn = async (url, requestType, body, auth) => {
 export const callApi = async (url, requestType, body, auth) => {
   // let host = 'https://www.googledevelopertoolkit.com/GoogleAnalytics';
   // let host='http://192.168.1.42/GoogelAnalytics'/
-  let host='https://ewebsftp.com/GoogelAnalytics'
+  let host='http://192.168.100.50/'
+  // let host='https://ewebsftp.com/GoogelAnalytics'
 
 
   console.log("request... ",host+url, requestType, body, auth)
