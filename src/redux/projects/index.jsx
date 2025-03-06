@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 import { callApi } from "../../API/APIs";
-import {ADD_CREDITS, ADD_CREDITS_FAILURE, ADD_CREDITS_SUCCESS, ADD_SUB_USER, ADD_SUB_USER_FAILURE, ADD_SUB_USER_SUCCESS, CREATE_PROJECT, CREATE_PROJECT_FAILURE, CREATE_PROJECT_SUCCESS, ENRICH_DATA, ENRICH_DATA_DETAILS, ENRICH_DATA_DETAILS_FAILURE, ENRICH_DATA_DETAILS_SUCCESS, ENRICH_DATA_FAILURE, ENRICH_DATA_SUCCESS, GENERATE_API_KEY, GENERATE_API_KEY_FAILURE, GENERATE_API_KEY_SUCCESS, GET_API_KEYS, GET_API_KEYS_FAILURE, GET_API_KEYS_SUCCESS, GET_CREDITS, GET_CREDITS_FAILURE, GET_CREDITS_SUCCESS, GET_PROJECT_VISITORS, GET_PROJECT_VISITORS_FAILURE, GET_PROJECT_VISITORS_SUCCESS, GET_PROJECTS, GET_PROJECTS_FAILURE, GET_PROJECTS_SUCCESS, GET_SEARCH, GET_SEARCH_FAILURE, GET_SEARCH_SUCCESS, GET_SUB_USERS, GET_SUB_USERS_FAILURE, GET_SUB_USERS_SUCCESS, REQUESTS, REQUESTS_FAILURE, REQUESTS_SUCCESS} from "../../constants";
+import {ADD_CREDITS, ADD_CREDITS_FAILURE, ADD_CREDITS_SUCCESS, ADD_EMAIL, ADD_EMAIL_FAILURE, ADD_EMAIL_SUCCESS, ADD_SUB_USER, ADD_SUB_USER_FAILURE, ADD_SUB_USER_SUCCESS, CREATE_PROJECT, CREATE_PROJECT_FAILURE, CREATE_PROJECT_SUCCESS, ENRICH_DATA, ENRICH_DATA_DETAILS, ENRICH_DATA_DETAILS_FAILURE, ENRICH_DATA_DETAILS_SUCCESS, ENRICH_DATA_FAILURE, ENRICH_DATA_SUCCESS, GENERATE_API_KEY, GENERATE_API_KEY_FAILURE, GENERATE_API_KEY_SUCCESS, GET_API_KEYS, GET_API_KEYS_FAILURE, GET_API_KEYS_SUCCESS, GET_CREDITS, GET_CREDITS_FAILURE, GET_CREDITS_SUCCESS, GET_EMAILS, GET_EMAILS_FAILURE, GET_EMAILS_SUCCESS, GET_PROJECT_VISITORS, GET_PROJECT_VISITORS_FAILURE, GET_PROJECT_VISITORS_SUCCESS, GET_PROJECTS, GET_PROJECTS_FAILURE, GET_PROJECTS_SUCCESS, GET_SEARCH, GET_SEARCH_FAILURE, GET_SEARCH_SUCCESS, GET_SUB_USERS, GET_SUB_USERS_FAILURE, GET_SUB_USERS_SUCCESS, REQUESTS, REQUESTS_FAILURE, REQUESTS_SUCCESS} from "../../constants";
 import { toast } from "react-toastify";
 function* watcherGetProjects(data) {
 
@@ -65,7 +65,7 @@ function* watcherGetSubUsers(data) {
 
 function* watcherAddSubUser(data) {
     console.log(data);
-    let url = `/ProjectController/userAddApi`;
+    let url = `/ProjectController/addSubUser`;
     const Data = yield call(callApi, url, 'POST', data.payload, true);
 
     if (Data.status === 200) {
@@ -74,6 +74,34 @@ function* watcherAddSubUser(data) {
 
     } else {
         yield put({ type: ADD_SUB_USER_FAILURE, payload: Data.data.error });
+        toast.error(Data.data.message);
+    }
+}
+
+
+function* watcherGetEmails(data) {
+    let url = `/get_smtp?secret_key=${data.payload.secret_key}`;
+    const Data = yield call(callApi, url, 'GET', "", true);
+
+    if (Data.status === 200) {
+        yield put({ type: GET_EMAILS_SUCCESS, payload: Data.data });
+    } else {
+        yield put({ type: GET_EMAILS_FAILURE, payload: Data.data.error });
+        toast.error(Data.data.message);
+    }
+}
+
+function* watcherAddEmail(data) {
+    console.log(data);
+    let url = `/create_smtp_credential`;
+    const Data = yield call(callApi, url, 'POST', data.payload, true);
+
+    if (Data.status === 200) {
+        yield put({ type: ADD_EMAIL_SUCCESS, payload: Data.data });
+        yield put({ type: GET_EMAILS, payload: {secret_key:data.payload.secret_key}});
+
+    } else {
+        yield put({ type: ADD_EMAIL_FAILURE, payload: Data.data.error });
         toast.error(Data.data.message);
     }
 }
@@ -142,5 +170,10 @@ export default function* watchProjects() {
     yield takeLatest(GET_PROJECT_VISITORS, watcherGetProjectVisitors);
     yield takeLatest(GET_SUB_USERS, watcherGetSubUsers);
     yield takeLatest(ADD_SUB_USER, watcherAddSubUser);
+    yield takeLatest(ADD_EMAIL, watcherAddEmail);
+    yield takeLatest(GET_EMAILS, watcherGetEmails);
+
+
+
 
 }

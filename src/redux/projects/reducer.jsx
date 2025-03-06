@@ -19,7 +19,14 @@ import {
     GET_SUB_USERS_FAILURE,
     ADD_SUB_USER,
     ADD_SUB_USER_SUCCESS,
-    ADD_SUB_USER_FAILURE
+    ADD_SUB_USER_FAILURE,
+    ADD_EMAIL,
+    ADD_EMAIL_SUCCESS,
+    ADD_EMAIL_FAILURE,
+    GET_EMAIL,
+    GET_EMAILS_SUCCESS,
+    GET_EMAILS_FAILURE,
+    GET_EMAILS
 } from "../../constants";
 import { addCredits, getApiKeys, getSubUsers } from "./action";
 
@@ -51,7 +58,21 @@ const initial_state = {
         loading: false,
     },
 
+    addEmail: {
+        data: null,
+        message: "",
+        error: "",
+        loading: false,
+    },
+
     getSubUsers: {
+        data: null,
+        message: "",
+        error: "",
+        loading: false,
+    },
+
+    getEmails: {
         data: null,
         message: "",
         error: "",
@@ -392,7 +413,74 @@ const projectReducer = (state = initial_state, { type, payload }) => {
                         error: payload,
                     },
                 };
-    
+ 
+                
+
+                case ADD_EMAIL:
+                    return {
+                        ...state,
+                        addEmail: {
+                            ...state.addEmail,
+                            loading: true,
+                            data: null, // Reset data while loading
+                        },
+                    };
+        
+                case ADD_EMAIL_SUCCESS:
+                    return {
+                        ...state,
+                        addEmail: {
+                            ...state.addEmail,
+                            loading: false,
+                            message: payload.message,
+                            data: payload.data,
+                            error: null,
+                        },
+                    };
+        
+                case ADD_EMAIL_FAILURE:
+                    return {
+                        ...state,
+                        addEmail: {
+                            ...state.addEmail,
+                            loading: false,
+                            error: payload,
+                        },
+                    };
+     
+
+                    case GET_EMAILS:
+                        return {
+                            ...state,
+                            getEmails: {
+                                ...state.getEmails,
+                                loading: true,
+                                data: null, // Reset data while loading
+                            },
+                        };
+            
+                    case GET_EMAILS_SUCCESS:
+                        return {
+                            ...state,
+                            getEmails: {
+                                ...state.getEmails,
+                                loading: false,
+                                message: payload.message,
+                                data: payload.data,
+                                error: null,
+                            },
+                        };
+            
+                    case GET_EMAILS_FAILURE:
+                        return {
+                            ...state,
+                            getEmails: {
+                                ...state.getEmails,
+                                loading: false,
+                                error: payload,
+                            },
+                        };
+         
         default:
             return state;
     }

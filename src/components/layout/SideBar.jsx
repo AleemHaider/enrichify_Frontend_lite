@@ -99,20 +99,22 @@ const SideBar = () => {
               </NavLink>
             </li> */}
             <li>
-  <select className="flex gap-2 w-52 m-2 border bg-white p-3 rounded-lg items-start border-blue-600 text-blue-600 hover:bg-gray-100">
-    <option selected disabled>Select Project</option>
-    {
-      data?.filter(item => item.status === "verify").map((item) => (
-        <option 
-          key={item.secret_key} 
-          onClick={() => navigate(`/project/traffic/${item.secret_key}`)} 
-          className="p-5 mt-2"
-        >
-          {item.title}
-        </option>
-      ))
+            <select
+  className="flex gap-2 w-52 m-2 border bg-white p-3 rounded-lg items-start border-blue-600 text-blue-600 hover:bg-gray-100"
+  onChange={(e) => {
+    if (e.target.value) {
+      navigate(`/project/traffic/${e.target.value}`);
     }
-  </select>
+  }}
+>
+  <option selected disabled>Select Project</option>
+  {data?.filter(item => item.status === "verify").map((item) => (
+    <option key={item.secret_key} value={item.secret_key}>
+      {item.title}
+    </option>
+  ))}
+</select>
+
 </li>
 
              <li>

@@ -1,4 +1,4 @@
-import { ADD_CREDITS, ADD_SUB_USER, CREATE_PROJECT, GENERATE_API_KEY, GET_API_KEYS, GET_CREDITS, GET_PROJECT_VISITORS, GET_PROJECTS, GET_SUB_USERS} from "../../constants/index"
+import { ADD_CREDITS, ADD_EMAIL, ADD_SUB_USER, CREATE_PROJECT, GENERATE_API_KEY, GET_API_KEYS, GET_CREDITS, GET_EMAILS, GET_PROJECT_VISITORS, GET_PROJECTS, GET_SUB_USERS} from "../../constants/index"
 export const getProjects = (data) => {
     return ({
         type: GET_PROJECTS,
@@ -55,6 +55,20 @@ export const getSubUsers = (data) => {
 export const addSubUser = (data) => {
     return ({
         type: ADD_SUB_USER,
+        payload: data
+    })
+}
+
+export const getEmails = (data) => {
+    return ({
+        type: GET_EMAILS,
+        payload: data
+    })
+}
+
+export const addEmail = (data) => {
+    return ({
+        type: ADD_EMAIL,
         payload: data
     })
 }

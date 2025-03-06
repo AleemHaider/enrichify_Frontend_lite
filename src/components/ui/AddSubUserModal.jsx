@@ -7,6 +7,8 @@ import DataTable from "react-data-table-component";
 const AddSubUserModal = () => {
   const { key } = useParams();
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+
   const [password, setPassword] = useState(""); // For generating API key
    // For generating API key
   const [isOpen, setIsOpen] = useState(false); // Modal state
@@ -31,47 +33,11 @@ const AddSubUserModal = () => {
 
   const handleUserCreation = () => {
     if (email !== "") {
-      dispatch(addSubUser({ secret_key: key, email: email, password:password }));
+      dispatch(addSubUser({ secret_key: key, name:name, email: email, password:password }));
       setStep(1); // Return to the first step after generating the key
       setIsOpen(false); // Close the modal after generating the key
     }
   };
-
-  const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text);
-    alert("API key copied to clipboard!");
-  };
-
-  const columns = [
-    {
-      name: "Name",
-      selector: (row) => row.name,
-      sortable: true,
-      wrap: true, // Allow text wrapping
-      style: {
-        minWidth: "150px", // Minimum width
-        maxWidth: "300px", // Maximum width
-      },
-    },
-    {
-      name: "API Key",
-      selector: (row) => row.api_key,
-      cell: (row) => (
-        <div className="flex items-center gap-2">
-          <span className="break-all">{row.api_key}</span>
-         
-            <svg  onClick={() => copyToClipboard(row.api_key)} class="w-6 h-6 cursor-pointer hover:text-blue-500 text-gray-300 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-  <path fill-rule="evenodd" d="M8 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1h2a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2Zm6 1h-4v2H9a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2h-1V4Zm-6 8a1 1 0 0 1 1-1h6a1 1 0 1 1 0 2H9a1 1 0 0 1-1-1Zm1 3a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2H9Z" clip-rule="evenodd"/>
-</svg>
-
-            
-
-        </div>
-      ),
-      wrap: true, // Ensure text wraps and shows fully
-      sortable: true,
-    },
-  ];
 
   return (
     <div>
@@ -122,6 +88,13 @@ const AddSubUserModal = () => {
                   placeholder="Enter Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                />
+                <input
+                  type="text"
+                  className="w-full text-gray-800 p-2 border border-gray-300 rounded-lg mb-4"
+                  placeholder="Enter Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
 
 <input

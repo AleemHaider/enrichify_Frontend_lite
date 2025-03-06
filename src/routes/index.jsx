@@ -19,6 +19,7 @@ import VisitorDetail from "../client/pages/home/VisitorDetail";
 import ClientOtpScreen from "../client/pages/auth/otp/OtpScreen";
 import { ClientPublicRoutes } from "./ClientPublicRoutes";
 import EmailDetail from "../client/pages/home/EmailDetail";
+import Emails from "../pages/Projects/Emails";
 
 const Routers = () => {
   return (
@@ -91,7 +92,16 @@ const Routers = () => {
               </Layout>
             }
           />
-
+           <Route
+            path="/project/emails/:key"
+            element={
+              <Layout>
+                <ProjectsLayout>
+                  <Emails />
+                </ProjectsLayout>
+              </Layout>
+            }
+          />
         <Route
             path="/project/users/:key"
             element={
