@@ -23,22 +23,9 @@ import {
     ADD_EMAIL,
     ADD_EMAIL_SUCCESS,
     ADD_EMAIL_FAILURE,
-    GET_EMAIL,
     GET_EMAILS_SUCCESS,
     GET_EMAILS_FAILURE,
     GET_EMAILS,
-    GET_TEMPLATES,
-    GET_TEMPLATES_SUCCESS,
-    GET_TEMPLATES_FAILURE,
-    UPDATE_TEMPLATE_FAILURE,
-    UPDATE_TEMPLATE_SUCCESS,
-    UPDATE_TEMPLATE,
-    DELETE_TEMPLATE_FAILURE,
-    DELETE_TEMPLATE_SUCCESS,
-    DELETE_TEMPLATE,
-    ADD_TEMPLATE_FAILURE,
-    ADD_TEMPLATE_SUCCESS,
-    ADD_TEMPLATE
 } from "../../constants";
 import { addCredits, addTemplate, deleteTemplate, getApiKeys, getSubUsers, getTemplates, updateTemplate } from "./action";
 
@@ -71,31 +58,6 @@ const initial_state = {
     },
 
     addEmail: {
-        data: null,
-        message: "",
-        error: "",
-        loading: false,
-    },
-
-    addTemplate: {
-        data: null,
-        message: "",
-        error: "",
-        loading: false,
-    },
-    getTemplates: {
-        data: null,
-        message: "",
-        error: "",
-        loading: false,
-    },
-    updateTemplate: {
-        data: null,
-        message: "",
-        error: "",
-        loading: false,
-    },
-    deleteTemplate: {
         data: null,
         message: "",
         error: "",
@@ -516,132 +478,7 @@ const projectReducer = (state = initial_state, { type, payload }) => {
                                 loading: false,
                                 error: payload,
                             },
-                        };
-                        case ADD_TEMPLATE:
-                            return {
-                                ...state,
-                                addTemplate: {
-                                    ...state.addTemplate,
-                                    loading: true,
-                                    data: null, // Reset data while loading
-                                },
-                            };
-                        
-                        case ADD_TEMPLATE_SUCCESS:
-                            return {
-                                ...state,
-                                addTemplate: {
-                                    ...state.addTemplate,
-                                    loading: false,
-                                    message: payload.message,
-                                    data: payload.data,
-                                    error: null,
-                                },
-                            };
-                        
-                        case ADD_TEMPLATE_FAILURE:
-                            return {
-                                ...state,
-                                addTemplate: {
-                                    ...state.addTemplate,
-                                    loading: false,
-                                    error: payload,
-                                },
-                            };
-                        
-                        case DELETE_TEMPLATE:
-                            return {
-                                ...state,
-                                deleteTemplate: {
-                                    ...state.deleteTemplate,
-                                    loading: true,
-                                },
-                            };
-                        
-                        case DELETE_TEMPLATE_SUCCESS:
-                            return {
-                                ...state,
-                                deleteTemplate: {
-                                    ...state.deleteTemplate,
-                                    loading: false,
-                                    message: payload.message,
-                                    error: null,
-                                },
-                                templates: state.templates.filter(template => template.id !== payload.id), // Remove deleted template from state
-                            };
-                        
-                        case DELETE_TEMPLATE_FAILURE:
-                            return {
-                                ...state,
-                                deleteTemplate: {
-                                    ...state.deleteTemplate,
-                                    loading: false,
-                                    error: payload,
-                                },
-                            };
-                        
-                        case UPDATE_TEMPLATE:
-                            return {
-                                ...state,
-                                updateTemplate: {
-                                    ...state.updateTemplate,
-                                    loading: true,
-                                },
-                            };
-                        
-                        case UPDATE_TEMPLATE_SUCCESS:
-                            return {
-                                ...state,
-                                updateTemplate: {
-                                    ...state.updateTemplate,
-                                    loading: false,
-                                    message: payload.message,
-                                    error: null,
-                                },
-                               
-                            };
-                        
-                        case UPDATE_TEMPLATE_FAILURE:
-                            return {
-                                ...state,
-                                updateTemplate: {
-                                    ...state.updateTemplate,
-                                    loading: false,
-                                    error: payload,
-                                },
-                            };
-                        
-                        case GET_TEMPLATES:
-                            return {
-                                ...state,
-                                getTemplates: {
-                                    ...state.getTemplates,
-                                    loading: true,
-                                },
-                            };
-                        
-                        case GET_TEMPLATES_SUCCESS:
-                            return {
-                                ...state,
-                                getTemplates: {
-                                    ...state.getTemplates,
-                                    loading: false,
-                                    data: payload.data,
-                                    error: null,
-                                },
-                            };
-                        
-                        case GET_TEMPLATES_FAILURE:
-                            return {
-                                ...state,
-                                getTemplates: {
-                                    ...state.getTemplates,
-                                    loading: false,
-                                    error: payload,
-                                },
-                            };
-                        
-         
+                        }; 
         default:
             return state;
     }

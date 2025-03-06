@@ -1,4 +1,4 @@
-import { ADD_CREDITS, ADD_EMAIL, ADD_SUB_USER, ADD_TEMPLATE, CREATE_PROJECT, DELETE_TEMPLATE, GENERATE_API_KEY, GET_API_KEYS, GET_CREDITS, GET_EMAILS, GET_PROJECT_VISITORS, GET_PROJECTS, GET_SUB_USERS, GET_TEMPLATES, UPDATE_TEMPLATE} from "../../constants/index"
+import { ADD_CREDITS, ADD_EMAIL, ADD_SUB_USER,CREATE_PROJECT, GENERATE_API_KEY, GET_API_KEYS, GET_CREDITS, GET_EMAILS, GET_PROJECT_VISITORS, GET_PROJECTS, GET_SUB_USERS} from "../../constants/index"
 export const getProjects = (data) => {
     return ({
         type: GET_PROJECTS,
@@ -69,35 +69,6 @@ export const getEmails = (data) => {
 export const addEmail = (data) => {
     return ({
         type: ADD_EMAIL,
-        payload: data
-    })
-}
-
-
-export const getTemplates = (data) => {
-    return ({
-        type: GET_TEMPLATES,
-        payload: data
-    })
-}
-
-export const addTemplate = (data) => {
-    return ({
-        type: ADD_TEMPLATE,
-        payload: data
-    })
-}
-
-export const deleteTemplate = (data) => {
-    return ({
-        type: DELETE_TEMPLATE,
-        payload: data
-    })
-}
-
-export const updateTemplate = (data) => {
-    return ({
-        type: UPDATE_TEMPLATE,
         payload: data
     })
 }

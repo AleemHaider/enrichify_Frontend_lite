@@ -20,6 +20,8 @@ import ClientOtpScreen from "../client/pages/auth/otp/OtpScreen";
 import { ClientPublicRoutes } from "./ClientPublicRoutes";
 import EmailDetail from "../client/pages/home/EmailDetail";
 import Emails from "../pages/Projects/Emails";
+import Templates from "../pages/templates/Templates";
+import Editor from "../pages/Projects/Editor";
 
 const Routers = () => {
   return (
@@ -98,6 +100,18 @@ const Routers = () => {
               <Layout>
                 <ProjectsLayout>
                   <Emails />
+                </ProjectsLayout>
+              </Layout>
+            }
+          />
+
+<Route
+            path="/project/templates/:key"
+            element={
+              <Layout>
+                <ProjectsLayout>
+                  <Templates />
+                  {/* <Editor/> */}
                 </ProjectsLayout>
               </Layout>
             }

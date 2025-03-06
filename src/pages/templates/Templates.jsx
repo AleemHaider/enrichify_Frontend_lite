@@ -35,8 +35,9 @@ const Templates = () => {
                     <div className='flex items-center justify-between'>
                     <div className='text-lg font-semibold'>{item?.template_name}</div>
                     <button className=' bg-rose-500 px-2 py-1 rounded-lg hover:bg-rose-600 text-white' onClick={()=>{dispatch(deleteTemplate(item.id));setEditor(true)}} >
-                    {/* <img className='w-5' src={deleteIcon} alt="" /> */}
-                    Delete
+                    {/* <img className='w-5' src={deleteIcon} alt="" />
+                     */}
+                     Delete
                     </button>
 
                     </div>
