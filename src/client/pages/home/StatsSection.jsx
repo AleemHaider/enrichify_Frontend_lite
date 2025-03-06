@@ -10,6 +10,8 @@ const StatsSection = () => {
     const dispatch = useDispatch()
     const [stats, setStats] = useState([])
     const data = useSelector(state => state.dashboardReducer.getDashboard.data)
+    const emailSend = data?.mail_data?.length
+    const emailOpen = data?.mail_data?.filter(d => d.status === "open").length
 
     useEffect(() => {
         if (!data) {
@@ -22,8 +24,8 @@ const StatsSection = () => {
         if (data) {
             setStats(() => ([
                 { title: "Visitors", total: data?.visitor_data?.length, icon: visitorIcon },
-                { title: "Emails Sent", total: data?.mail_data?.length, icon: EmailSentIcon },
-                { title: "Emails Opened", total: data?.mail_data?.length, icon: EmailOpenIcon },
+                { title: "Emails Sent", total: emailSend, icon: EmailSentIcon },
+                { title: "Emails Opened", total: emailOpen, icon: EmailOpenIcon },
             ]))
         }
     }, [data])

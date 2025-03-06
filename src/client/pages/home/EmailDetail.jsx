@@ -7,7 +7,6 @@ import ModalShowTemplate from '../../components/ui/ModalShowTemplate'
 const EmailDetail = () => {
     const loading = useSelector(state => state.dashboardReducer.getDashboard.loading)
     const data = useSelector(state => state.dashboardReducer.getDashboard?.data?.mail_data)
-    console.log("loading: ", loading);
 
     const columns = [
         {
@@ -15,50 +14,30 @@ const EmailDetail = () => {
             selector: (row) => row.from_email,
             sortable: true,
             wrap: false, // Allow text wrapping
-            style: {
-                minWidth: "150px", // Minimum width
-                maxWidth: "300px", // Maximum width
-            },
         },
         {
             name: "To Email",
             selector: (row) => row.to_email,
             sortable: true,
             wrap: false, // Allow text wrapping
-            style: {
-                minWidth: "150px", // Minimum width
-                maxWidth: "300px", // Maximum width
-            },
         },
         {
             name: "Subject",
             selector: (row) => row.subject,
             sortable: true,
             wrap: false, // Allow text wrapping
-            style: {
-                minWidth: "150px", // Minimum width
-                maxWidth: "300px", // Maximum width
-            },
         },
         {
             name: "Template",
             selector: (row) => <ModalShowTemplate template={row.body} />,
             sortable: true,
             wrap: false, // Allow text wrapping
-            style: {
-                minWidth: "150px", // Minimum width
-                maxWidth: "300px", // Maximum width
-            },
         },
         {
             name: "Status",
-            selector: (row) => row.status,
+            selector: (row) => row.status === "send" ? <p className='bg-[#3994ff] p-1.5 rounded text-white'>Sent</p> : <p className='bg-[#16DBCC] p-1.5 rounded text-white'>Opened</p>,
             sortable: true,
             wrap: false, // Allow text wrapping
-            style: {
-                minWidth: "150px", // Minimum width
-                maxWidth: "300px", // Maximum width
-            },
         },
     ]
     return (
