@@ -5,13 +5,15 @@ import { LOGOUT } from "../constants";
 import projectReducer from "./projects/reducer";
 import clientAuthReducer from "./client-redux/auth/reducer";
 import dashboardReducer from "./client-redux/dashboard/reducer";
+import templateReducer from "./template/reducer";
 
 const appReducers = combineReducers({
     authReducer: authReducer,
     homeReducer: homeReducer,
     projectReducer: projectReducer,
     clientAuthReducer: clientAuthReducer,
-    dashboardReducer: dashboardReducer
+    dashboardReducer: dashboardReducer,
+    templateReducer:templateReducer
 })
 const reducers = (state, action) => {
     if (action.type === LOGOUT) {

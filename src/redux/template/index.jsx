@@ -41,7 +41,7 @@ function* watcherUpdateTemplate(data) {
     if(Data.status===200){
         toast.success(Data.data.message)
         yield put({type : GET_TEMPLATES_SUCCESS,payload:Data.data});  
-        yield put({type : GET_TEMPLATES});      
+        yield put({type : GET_TEMPLATES, payload:{secret_key:data.payload.secret_key}});      
     }
     else{
         yield put({type:GET_TEMPLATES_FAILURE,payload:Data.data})

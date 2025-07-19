@@ -2,22 +2,30 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteTemplate, getTemplates } from '../../redux/template/action'
 import Editor from './Editor'
+import { useParams } from 'react-router-dom'
 // import svg from '../../assets/svgs/undraw_designer_girl_re_h54c.svg'
 // import deleteIcon from '../../assets/svgs/delete-svgrepo-com.svg'
 
 const Templates = () => {
     const [id, setId] = useState()
+    const {key}=useParams()
     const [editor, setEditor] = useState(false)
     const dispatch=useDispatch()
-    const data=useSelector((state)=>state.templateReducer?.getTemplates?.data)
+    const data=useSelector((state)=>state?.templateReducer?.getTemplates?.data)
     const setLoading = useSelector((state) => state.templateReducer?.setTemplate?.loading);
     const updateLoading = useSelector((state) => state.templateReducer?.updateTemplate?.loading);
      useEffect(() => {
-    if(data===null){
-        dispatch(getTemplates());
+    if(data==null){
+        dispatch(getTemplates({secret_key:key}));
         }
         console.log(data)
         }, [data])
+        console.log("data+++++++++++++++",data)
+        
+        // useEffect(() => {
+        // dispatch(getTemplates());
+         
+        // }, [data])
         
 
   return (

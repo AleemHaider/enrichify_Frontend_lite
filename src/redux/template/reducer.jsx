@@ -138,7 +138,7 @@ const templateReducer = (state = initial_state, { type, payload }) => {
                     getTemplates: {
                         ...state.getTemplates,
                         loading: true,
-                        data:payload?.data,
+                        data:null,
                     }
                 };
             case GET_TEMPLATES_SUCCESS:
